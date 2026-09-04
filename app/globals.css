@@ -24,3 +24,67 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+.bg-pride {
+  background: var(--pride-gradient);
+}
+
+.text-pride-gradient {
+  background: var(--pride-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-pride-line {
+  background: var(--pride-gradient);
+}
+
+.pride-border {
+  position: relative;
+}
+.pride-border::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  width: 40px;
+  background: var(--pride-gradient);
+  border-radius: 99px;
+}
+
+:root {
+  --font-scale: 1; 
+  /* The Professional Pride Gradient: Blue, Pink, White (Trans Flag) + Muted Rainbow */
+  --pride-gradient: linear-gradient(90deg, #7dd3fc 0%, #f472b6 25%, #fde047 50%, #4ade80 75%, #818cf8 100%);
+}
+
+/* This is the magic: Everything in Tailwind uses rem, which looks at this value */
+html {
+  font-size: calc(16px * var(--font-scale));
+  scroll-behavior: smooth;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(var(--background-rgb));
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Sophisticated animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #fdfcf9; }
+::-webkit-scrollbar-thumb { background: #d88998; border-radius: 10px; }
