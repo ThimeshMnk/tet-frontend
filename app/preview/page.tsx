@@ -1,17 +1,26 @@
 "use client";
-import { useSearchParams } from 'next/navigation';
-import HomeContent from '../HomeContent';
+
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import HomeContent from "../HomeContent";
+
+function PreviewContent() {
+  const searchParams = useSearchParams();
+
+  const title =
+    searchParams.get("title") || "Protecting Rights & Hope.";
+
+  return (
+    <div className="preview-mode">
+      <HomeContent customTitle={title} />
+    </div>
+  );
+}
 
 export default function PreviewPage() {
-    const searchParams = useSearchParams();
-    
-    // Get text from URL query parameters sent by Laravel
-    const title = searchParams.get('title') || "Protecting Rights & Hope.";
-
-    return (
-        <div className="preview-mode">
-            {/* We pass the 'title' into HomeContent as a prop */}
-            <HomeContent customTitle={title} />
-        </div>
-    );
+  return (
+    <Suspense fallback={<div>Loading preview...</div>}>
+      <PreviewContent />
+    </Suspense>
+  );
 }
