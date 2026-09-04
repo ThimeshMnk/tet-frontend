@@ -19,7 +19,7 @@ function PreviewContent() {
 
 export default function PreviewPage() {
   return (
-    <Suspense fallback={<div>Loading preview...</div>}>
+    <Suspense fallback={<div>Loading ...</div>}>
       <PreviewContent />
     </Suspense>
   );
