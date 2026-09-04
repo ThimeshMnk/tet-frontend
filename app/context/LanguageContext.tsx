@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
+const API_BASE = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://web-production-3c6bc.up.railway.app';
 
 /**
  * 1. Define specific types instead of 'any'
