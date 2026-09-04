@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    // This allows Next.js to fetch images from your local Laravel server
-    dangerouslyAllowLocalIP: true, 
-    
     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'web-production-3c6bc.up.railway.app',
+        pathname: '/storage/**',
+      },
       {
         protocol: 'http',
         hostname: 'localhost',
@@ -16,6 +18,20 @@ const nextConfig = {
         hostname: 'images.unsplash.com',
       },
     ],
+  },
+  async headers() {
+    return [
+      {
+        // Allow the Laravel admin panel to embed your pages in an iframe
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors 'self' https://web-production-3c6bc.up.railway.app http://localhost:8000;",
+          },
+        ],
+      },
+    ];
   },
 };
 
