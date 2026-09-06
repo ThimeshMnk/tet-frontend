@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Logo from "./Logo";
-import FontSizeControl from "./FontSizeControl";
 import { useLanguage } from "../context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -12,20 +11,28 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
 
+  // 3 Supported Languages
+  const languages = [
+    { code: "en", label: "EN", name: "English" },
+    { code: "si", label: "සිං", name: "සිංහල" },
+    { code: "ta", label: "தமி", name: "தமிழ்" },
+  ];
+
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services", hasDropdown: true },
-    { name: "Projects", href: "/projects" },
-    { name: "Events & Gallery", href: "/gallery" },
-    { name: "News", href: "/news" },
-    { name: "Social Enterprise", href: "/booking" },
-    { name: "Contact Us", href: "/contact" },
+    { name: t("nav_home", "Home"), href: "/" },
+    { name: t("nav_about", "About"), href: "/about" },
+    { name: t("nav_services", "Services"), href: "/services", hasDropdown: true },
+    { name: t("nav_projects", "Projects"), href: "/projects" },
+    { name: t("nav_gallery", "Events & Gallery"), href: "/gallery" },
+    { name: t("nav_activities", "Activities"), href: "/news" },
+    { name: t("nav_booking", "Social Enterprise"), href: "/booking" },
+    { name: t("nav_contact", "Contact Us"), href: "/contact" },
   ];
 
   return (
-    <nav className="bg-gradient-to-r from-purple-50/90 via-white/95 to-blue-50/90 backdrop-blur-md sticky top-0 z-50 border-b border-[#f3f0ec]">
-      <div className="h-[2px] w-full bg-pride opacity-80"></div>
+    <nav className="bg-gradient-to-r from-sky-50/90 via-white/95 to-pink-50/90 backdrop-blur-md sticky top-0 z-50 border-b border-pink-100/60 shadow-sm shadow-sky-100/30">
+      {/* Pride accent top line */}
+      <div className="h-[2px] w-full bg-pride opacity-90"></div>
 
       <div className="px-4 md:px-8 w-full">
         <div className="flex justify-between h-20 items-center">
@@ -35,68 +42,177 @@ export default function Navbar() {
           </Link>
 
           {/* DESKTOP LINKS */}
-          <div className="hidden lg:flex items-center flex-grow justify-center space-x-6 xl:space-x-8 text-[10px] font-bold uppercase tracking-[0.2em] text-[#8e7f71]">
+          <div className="hidden lg:flex items-center flex-grow justify-center space-x-5 xl:space-x-7 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600">
             {navLinks.map((link) => (
               link.hasDropdown ? (
-                <div key={link.name} className="relative group" onMouseEnter={() => setIsServicesOpen(true)} onMouseLeave={() => setIsServicesOpen(false)}>
-                  <Link href={link.href} className="hover:text-[#1a365d] transition-colors flex items-center gap-1">
+                <div 
+                  key={link.name} 
+                  className="relative group" 
+                  onMouseEnter={() => setIsServicesOpen(true)} 
+                  onMouseLeave={() => setIsServicesOpen(false)}
+                >
+                  <Link 
+                    href={link.href} 
+                    className="hover:text-sky-600 transition-colors flex items-center gap-1 py-2"
+                  >
                     {link.name}
-                    <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7" /></svg>
+                    <svg className="w-2.5 h-2.5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                    </svg>
                   </Link>
+
                   {/* Dropdown */}
                   <AnimatePresence>
                     {isServicesOpen && (
-                      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="absolute top-full left-0 pt-2 w-48">
-                        <div className="bg-white shadow-xl rounded-xl py-2 border border-[#f3f0ec]">
-                          <Link href="/services" className="block px-4 py-2 hover:bg-slate-50 text-[#1a365d]">Advocacy Services</Link>
-                          <Link href="/volunteer" className="block px-4 py-2 hover:bg-slate-50 text-[#1a365d]">Volunteer</Link>
+                      <motion.div 
+                        initial={{ opacity: 0, y: 8 }} 
+                        animate={{ opacity: 1, y: 0 }} 
+                        exit={{ opacity: 0, y: 8 }} 
+                        className="absolute top-full left-0 pt-1 w-52"
+                      >
+                        <div className="bg-white/95 backdrop-blur-md shadow-lg shadow-pink-100/50 rounded-2xl py-2 border border-pink-100">
+                          <Link 
+                            href="/services" 
+                            className="block px-4 py-2 hover:bg-sky-50/80 text-slate-700 hover:text-sky-700 transition-colors text-[10px]"
+                          >
+                            {t("nav_drop_services", "Advocacy Services")}
+                          </Link>
+                          <Link 
+                            href="/volunteer" 
+                            className="block px-4 py-2 hover:bg-pink-50/80 text-slate-700 hover:text-pink-600 transition-colors text-[10px]"
+                          >
+                            {t("nav_drop_volunteer", "Volunteer")}
+                          </Link>
                         </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
               ) : (
-                <Link key={link.name} href={link.href} className="hover:text-[#1a365d] transition-colors whitespace-nowrap">
+                <Link 
+                  key={link.name} 
+                  href={link.href} 
+                  className="hover:text-pink-500 transition-colors whitespace-nowrap"
+                >
                   {link.name}
                 </Link>
               )
             ))}
           </div>
 
-          {/* RIGHT ACTIONS */}
-          <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
-            <Link href="/donate" className="bg-[#1a365d] text-white text-[9px] font-black uppercase tracking-widest px-6 py-2.5 rounded-full hover:shadow-lg transition-all">
+          {/* RIGHT ACTIONS: DONATE + TRILINGUAL SWITCHER */}
+          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+            {/* 3-Language Changer Pills (English, Sinhala, Tamil) */}
+            <div className="flex items-center bg-white/90 border border-sky-200/90 rounded-full p-1 shadow-sm">
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  type="button"
+                  onClick={() => setLocale(lang.code)}
+                  title={lang.name}
+                  className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase transition-all cursor-pointer ${
+                    locale === lang.code
+                      ? "bg-gradient-to-r from-sky-400 to-pink-400 text-white shadow-sm shadow-pink-200/50 scale-105"
+                      : "text-slate-500 hover:text-sky-900"
+                  }`}
+                >
+                  {lang.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Donate Button */}
+            <Link 
+              href="/donate" 
+              className="bg-gradient-to-r from-sky-400 to-pink-400 hover:from-sky-500 hover:to-pink-500 text-white text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-full shadow-md shadow-pink-200/50 hover:shadow-sky-200/50 transition-all hover:scale-105 active:scale-95"
+            >
               {t('btn_donate', 'Donate')}
             </Link>
-            <FontSizeControl />
           </div>
 
-          <button className="lg:hidden p-2 text-[#1a365d]" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"} /></svg>
+          {/* MOBILE TOGGLE BUTTON */}
+          <button 
+            className="lg:hidden p-2 text-sky-600 hover:text-pink-500 transition-colors" 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"} />
+            </svg>
           </button>
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE DRAWER */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="lg:hidden bg-white border-b border-[#f3f0ec] overflow-hidden">
-            <div className="flex flex-col p-6 space-y-4 text-[12px] font-bold uppercase tracking-widest text-[#1a365d]">
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }} 
+            animate={{ opacity: 1, height: "auto" }} 
+            exit={{ opacity: 0, height: 0 }} 
+            className="lg:hidden bg-white/98 backdrop-blur-md border-b border-pink-100 overflow-hidden"
+          >
+            <div className="flex flex-col p-6 space-y-4 text-[12px] font-bold uppercase tracking-widest text-slate-700">
+              
+              {/* Mobile Language Selector */}
+              <div className="flex items-center justify-between pb-3 border-b border-sky-100">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                  Language:
+                </span>
+                <div className="flex gap-1.5 bg-sky-50 p-1 rounded-full border border-sky-200">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => setLocale(lang.code)}
+                      className={`px-3 py-1 rounded-full text-[10px] font-bold ${
+                        locale === lang.code
+                          ? "bg-gradient-to-r from-sky-400 to-pink-400 text-white shadow-sm"
+                          : "text-slate-600"
+                      }`}
+                    >
+                      {lang.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Navigation Links */}
               {navLinks.map((link) => (
                 <div key={link.name}>
-                    <Link href={link.href} onClick={() => setIsMobileMenuOpen(false)}>{link.name}</Link>
-                    {link.hasDropdown && (
-                        <div className="pl-4 pt-2 text-[#8e7f71] text-[10px]">
-                            <Link href="/volunteer" className="block py-1">Volunteer</Link>
-                        </div>
-                    )}
+                  <Link 
+                    href={link.href} 
+                    className="hover:text-pink-500 transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                  {link.hasDropdown && (
+                    <div className="pl-4 pt-2 space-y-2 text-slate-500 text-[10px]">
+                      <Link 
+                        href="/volunteer" 
+                        className="block hover:text-sky-600"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {t("nav_drop_volunteer", "Volunteer")}
+                      </Link>
+                    </div>
+                  )}
                 </div>
               ))}
+
+              <div className="pt-2">
+                <Link 
+                  href="/donate" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block text-center bg-gradient-to-r from-sky-400 to-pink-400 text-white py-3 rounded-full text-[10px] font-black uppercase tracking-widest shadow-md"
+                >
+                  {t('btn_donate', 'Donate')}
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-      
     </nav>
   );
 }

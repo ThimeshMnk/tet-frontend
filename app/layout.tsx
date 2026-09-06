@@ -16,7 +16,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
-      <body className={`${inter.variable} ${playfair.variable} font-sans bg-[#fdfcf9] text-[#2c3e50] antialiased`} suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${playfair.variable} font-sans bg-gradient-to-br from-sky-50/40 via-white to-pink-50/40 text-slate-800 antialiased`}
+        suppressHydrationWarning
+      >
         <LanguageProvider>
           <Navbar />
           <main className="min-h-screen">{children}</main>

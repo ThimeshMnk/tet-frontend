@@ -1,8 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fdfefe;
+  --foreground: #1e293b;
+  --font-scale: 1;
+
+  /* Trans Equality Light Blue & Light Pink Gradient */
+--pride-gradient: linear-gradient(
+    90deg, 
+    #0284c7 0%,    /* Rich Sky Blue */
+    #38bdf8 25%,   /* Bright Light Blue */
+    #ec4899 50%,   /* Rich Pink (makes '&' clearly visible!) */
+    #f472b6 75%,   /* Soft Pink */
+    #0ea5e9 100%   /* Sky Blue */
+  );
+
+    --pride-text-gradient: linear-gradient(
+    90deg,
+    #0284c7 0%,
+    #db2777 50%,
+    #0ea5e9 100%
+  );
 }
 
 @theme inline {
@@ -14,26 +32,28 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0b1320;
+    --foreground: #f1f5f9;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* Custom Pride Accents */
 .bg-pride {
   background: var(--pride-gradient);
 }
 
 .text-pride-gradient {
-  background: var(--pride-gradient);
+  background: var(--pride-text-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block; /* Ensures gradient renders reliably across browsers */
 }
-
 .bg-pride-line {
   background: var(--pride-gradient);
 }
@@ -53,25 +73,13 @@ body {
   border-radius: 99px;
 }
 
-:root {
-  --font-scale: 1; 
-  /* The Professional Pride Gradient: Blue, Pink, White (Trans Flag) + Muted Rainbow */
-  --pride-gradient: linear-gradient(90deg, #7dd3fc 0%, #f472b6 25%, #fde047 50%, #4ade80 75%, #818cf8 100%);
-}
-
-/* This is the magic: Everything in Tailwind uses rem, which looks at this value */
+/* Scaling & Smooth Scroll */
 html {
   font-size: calc(16px * var(--font-scale));
   scroll-behavior: smooth;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background-color: rgb(var(--background-rgb));
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Sophisticated animations */
+/* Animations */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -85,6 +93,17 @@ body {
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #fdfcf9; }
-::-webkit-scrollbar-thumb { background: #d88998; border-radius: 10px; }
+/* Light Blue / Pink Scrollbars */
+::-webkit-scrollbar { 
+  width: 6px; 
+}
+::-webkit-scrollbar-track { 
+  background: #f0f9ff; 
+}
+::-webkit-scrollbar-thumb { 
+  background: #f472b6; 
+  border-radius: 10px; 
+}
+::-webkit-scrollbar-thumb:hover { 
+  background: #38bdf8; 
+}

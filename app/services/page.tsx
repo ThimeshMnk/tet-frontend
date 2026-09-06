@@ -144,7 +144,7 @@ const [previewData, setPreviewData] = useState<Record<string, string | Record<st
       </section>
 
       {/* 3. PROCESS: Modern Horizontal Structure */}
-      <section className="py-32 bg-[#334155] text-white rounded-t-[4rem] md:rounded-t-[6rem] overflow-hidden">
+      {/* <section className="py-32 bg-[#334155] text-white rounded-t-[4rem] md:rounded-t-[6rem] overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-24">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
@@ -194,10 +194,10 @@ const [previewData, setPreviewData] = useState<Record<string, string | Record<st
              </Link>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* 4. EMERGENCY CTA: Crisis Response */}
-      <section className="py-24 px-6 bg-[#f8fafc]">
+      {/* <section className="py-24 px-6 bg-[#f8fafc]">
         <div className="max-w-7xl mx-auto relative group">
           <div className="relative overflow-hidden bg-[#334155] rounded-[3.5rem] p-10 md:p-24 shadow-2xl">
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[100px] -mr-64 -mt-64"></div>
@@ -232,7 +232,7 @@ const [previewData, setPreviewData] = useState<Record<string, string | Record<st
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
     </div>
   );
