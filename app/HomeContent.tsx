@@ -65,36 +65,39 @@ export default function HomeContent({ customTitle }: HomeContentProps) {
   }
 
   // Scroll to section + Scroll slider to specific slide
-  useEffect(() => {
+  // Inside HomeContent.tsx:
+
+useEffect(() => {
   const handleScrollMessage = (event: MessageEvent) => {
-    // Optional: add origin check if needed
     if (event.data?.type === "TET_SCROLL_TO_SECTION") {
       const { sectionId, slideIndex } = event.data;
+      console.log("📥 [Next.js iframe] Received scroll command for:", sectionId);
 
       if (sectionId) {
         const targetElement = document.getElementById(sectionId);
+
         if (targetElement) {
-          // Method 1: scrollIntoView with immediate fallback
-          targetElement.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-            inline: "nearest"
+          // Calculate exact document position (immune to cross-origin iframe scroll throttling)
+          const rect = targetElement.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const targetY = rect.top + scrollTop - 80; // 80px navbar clearance
+
+          window.scrollTo({
+            top: targetY,
+            behavior: "smooth"
           });
 
-          // Method 2: Manual fallback in case window/body scroll is intercepted by a parent wrapper
-          setTimeout(() => {
-            const scrollContainer = document.scrollingElement || document.documentElement || document.body;
-            const elementTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
-            
-            window.scrollTo({
-              top: elementTop - 20, // 20px padding offset from top
-              behavior: "smooth"
-            });
-          }, 50);
+          // Secondary fallback for mobile / Safari
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        } else {
+          console.warn("⚠️ [Next.js] Element not found on page with id:", sectionId);
         }
       }
 
-      // If editing an impact card, slide the Embla carousel
+      // If slide index is provided, scroll Embla carousel
       if (emblaApi && slideIndex !== null && slideIndex !== undefined) {
         emblaApi.scrollTo(slideIndex);
       }
@@ -104,7 +107,6 @@ export default function HomeContent({ customTitle }: HomeContentProps) {
   window.addEventListener("message", handleScrollMessage);
   return () => window.removeEventListener("message", handleScrollMessage);
 }, [emblaApi]);
-
 
   // Helper to extract localized text from card item
   const getCardText = (value: Record<string, string> | string | undefined, fallback: string) => {
