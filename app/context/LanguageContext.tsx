@@ -1,95 +1,156 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
 
-const API_BASE = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://web-production-3c6bc.up.railway.app';
+const RAW_API_BASE =
+  process.env.NEXT_PUBLIC_BACKEND_URL ||
+  "https://web-production-3c6bc.up.railway.app";
+const API_BASE = RAW_API_BASE.replace(/\/+$/, "");
 
-/**
- * 1. Define specific types instead of 'any'
- */
-// Represents { en: "text", si: "text", ta: "text" }
-type TrilingualTranslations = Record<string, string>;
-
-// A value in our database is either a simple string (image path) 
-// or an object containing translations
-type SettingValue = string | TrilingualTranslations;
-
-// The entire settings object is a map of keys to these values
-interface SettingsMap {
-    [key: string]: SettingValue | undefined;
-}
+export type TrilingualTranslations = Record<string, string>;
+export type SettingValue = string | TrilingualTranslations;
+export type SettingsMap = Record<string, SettingValue | undefined>;
 
 interface LanguageContextType {
-    locale: string;
-    setLocale: (lang: string) => void;
-    data: SettingsMap;
-    t: (key: string, fallback: string) => string;
-    getAssetUrl: (path: SettingValue | null | undefined, fallback?: string) => string;
+  locale: string;
+  setLocale: (lang: string) => void;
+  data: SettingsMap;
+  isPreview: boolean;
+  t: (key: string, fallback?: string) => string;
+  getAsset: (keyOrPath: SettingValue | null | undefined, fallback?: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
-    const [locale, setLocale] = useState('en');
-    const [data, setData] = useState<SettingsMap>({});
+  const [locale, setLocale] = useState<string>("en");
+  const [initialData, setInitialData] = useState<SettingsMap>({});
+  const [previewData, setPreviewData] = useState<SettingsMap | null>(null);
 
-    useEffect(() => {
-        const fetchSettings = async () => {
-            try {
-                const response = await fetch(`${API_BASE}/api/settings`);
-                if (!response.ok) throw new Error('Network response was not ok');
-                const json = await response.json();
-                setData(json as SettingsMap);
-            } catch (err) {
-                console.error("API Error:", err);
-            }
-        };
-        fetchSettings();
-    }, []);
+  // 1. Fetch initial settings on initial client mount
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const response = await fetch(`${API_BASE}/api/settings`);
+        if (!response.ok) throw new Error("Settings fetch failed");
+        const json = await response.json();
+        setInitialData(json as SettingsMap);
+      } catch (err) {
+        console.error("API Settings Fetch Error:", err);
+      }
+    };
+    fetchSettings();
+  }, []);
 
-    const t = useCallback((key: string, fallback: string): string => {
-        const val = data[key];
-        if (!val) return fallback;
-        
-        // If it's an object, get the translated string
-        if (typeof val === 'object' && val !== null) {
-            return val[locale] || val['en'] || fallback;
+  // 2. Global Livewire live-preview message listener
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data?.type === "TET_LIVE_PREVIEW") {
+        setPreviewData(event.data.state);
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
+
+  // Priority merge: preview state overrides saved state
+  const mergedData = useMemo<SettingsMap>(() => {
+    return { ...initialData, ...(previewData || {}) };
+  }, [initialData, previewData]);
+
+  // 3. Centralized translation reader
+  const t = useCallback(
+    (key: string, fallback: string = ""): string => {
+      const val = mergedData[key];
+      if (val === undefined || val === null || val === "") return fallback;
+
+      if (typeof val === "object") {
+        return val[locale] || val["en"] || fallback;
+      }
+
+      return String(val);
+    },
+    [mergedData, locale]
+  );
+
+  // 4. Centralized asset resolver for setting keys, full URLs, blobs, or storage paths
+  // Unified Asset Resolver
+  const getAsset = useCallback(
+    (keyOrPath: SettingValue | null | undefined, fallback: string = ""): string => {
+      if (!keyOrPath) return fallback;
+
+      let target: SettingValue | undefined = keyOrPath;
+
+      // Check if keyOrPath is a key in settings
+      if (typeof keyOrPath === "string") {
+        if (keyOrPath in mergedData) {
+          target = mergedData[keyOrPath];
+        } else if (!keyOrPath.includes("/") && !keyOrPath.includes(".")) {
+          // It's a key name (e.g. 'hero_image_main') that doesn't exist yet in the DB -> return fallback!
+          return fallback;
         }
-        
-        // If it's already a string, return it
-        return val;
-    }, [data, locale]);
+      }
 
-    const getAssetUrl = useCallback((path: SettingValue | null | undefined, fallback: string = ''): string => {
-        if (!path) return fallback;
+      // If target is empty, null, or undefined -> return fallback
+      if (!target) return fallback;
 
-        let finalPath: string = '';
+      let finalPath = "";
+      if (typeof target === "object") {
+        finalPath = target[locale] || target["en"] || Object.values(target)[0] || "";
+      } else {
+        finalPath = String(target).trim();
+      }
 
-        // If path is a translation object (accidental passing of text key)
-        if (typeof path === 'object' && path !== null) {
-            finalPath = path[locale] || Object.values(path)[0] || '';
-        } else {
-            finalPath = path;
-        }
+      if (!finalPath) return fallback;
 
-        if (!finalPath || typeof finalPath !== 'string') return fallback;
+      // Handle full URLs, Livewire preview temporary URLs, and blob paths
+      if (
+        finalPath.startsWith("http://") ||
+        finalPath.startsWith("https://") ||
+        finalPath.startsWith("blob:") ||
+        finalPath.includes("livewire")
+      ) {
+        return finalPath;
+      }
 
-        if (finalPath.startsWith('http://') || finalPath.startsWith('https://') || finalPath.startsWith('blob:')) {
-            return finalPath;
-        }
+      const cleanPath = finalPath.replace(/^\/+/, "");
+      const normalizedPath = cleanPath.startsWith("storage/")
+        ? cleanPath.replace(/^storage\//, "")
+        : cleanPath;
 
-        return `${API_BASE}/storage/${finalPath}`;
-    }, [locale]);
+      return `${API_BASE}/storage/${normalizedPath}`;
+    },
+    [mergedData, locale]
+  );
 
-    return (
-        <LanguageContext.Provider value={{ locale, setLocale, data, t, getAssetUrl }}>
-            {children}
-        </LanguageContext.Provider>
-    );
+  return (
+    <LanguageContext.Provider
+      value={{
+        locale,
+        setLocale,
+        data: mergedData,
+        isPreview: Boolean(previewData),
+        t,
+        getAsset,
+      }}
+    >
+      {children}
+    </LanguageContext.Provider>
+  );
 };
 
 export const useLanguage = () => {
-    const context = useContext(LanguageContext);
-    if (!context) throw new Error('useLanguage must be used within LanguageProvider');
-    return context;
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error("useLanguage must be used within a LanguageProvider");
+  }
+  return context;
 };

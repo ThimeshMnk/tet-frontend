@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    dangerouslyAllowLocalIP: true, // 👈 Allows Next.js to optimize images from local backend (localhost:8000)
     remotePatterns: [
       {
         protocol: 'https',
@@ -22,7 +23,6 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Allow the Laravel admin panel to embed your pages in an iframe
         source: '/:path*',
         headers: [
           {
