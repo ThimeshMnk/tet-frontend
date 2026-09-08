@@ -25,8 +25,8 @@ interface LanguageContextType {
   isPreview: boolean;
   t: (key: string, fallback?: string) => string;
   getAsset: (keyOrPath: SettingValue | null | undefined, fallback?: string) => string;
+  getAssetUrl: (keyOrPath: SettingValue | null | undefined, fallback?: string) => string; // 👈 Add this
 }
-
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
@@ -131,6 +131,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     [mergedData, locale]
   );
 
+ // 2. In the Provider return value, alias getAssetUrl to getAsset:
   return (
     <LanguageContext.Provider
       value={{
@@ -140,6 +141,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
         isPreview: Boolean(previewData),
         t,
         getAsset,
+        getAssetUrl: getAsset, // 👈 Add this line (points to the same resolver)
       }}
     >
       {children}
