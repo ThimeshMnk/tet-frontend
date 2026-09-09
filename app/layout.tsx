@@ -4,7 +4,8 @@ import "./globals.css";
 import { LanguageProvider } from "./context/LanguageContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import WhatsAppButton from "./components/WhatsAppButton"; // 👈 1. Import component
+import WhatsAppButton from "./components/WhatsAppButton";
+import ScrollToTop from "./components/ScrollToTop"; // 👈 1. Import component
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
@@ -22,11 +23,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         suppressHydrationWarning
       >
         <LanguageProvider>
+          <ScrollToTop /> {/* 👈 2. Place it here */}
           <Navbar />
           <main className="min-h-screen">{children}</main>
           <Footer />
-          
-          {/* 👈 2. Floating WhatsApp Icon */}
           <WhatsAppButton phoneNumber="94771234567" />
         </LanguageProvider>
       </body>

@@ -19,7 +19,7 @@ export default function Navbar() {
   ];
 
   const navLinks = [
-    { name: t("nav_home", "Home"), href: "/" },
+    // { name: t("nav_home", "Home"), href: "/" },
     { name: t("nav_about", "About"), href: "/about" },
     { name: t("nav_services", "Services"), href: "/services", hasDropdown: true },
     { name: t("nav_projects", "Projects"), href: "/projects" },
