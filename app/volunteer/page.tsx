@@ -156,7 +156,7 @@ export default function VolunteerPage() {
   };
 
   return (
-    <div className="w-full bg-[#f8fbff] text-slate-800 selection:bg-pink-100 selection:text-sky-900 overflow-x-hidden scroll-smooth">
+    <div className="w-full bg-[#f8fbff] text-slate-800 selection:bg-pink-100 selection:text-[#2A8ACD] overflow-x-hidden scroll-smooth">
       
       {/* 1. HERO SECTION */}
       <section 
@@ -170,12 +170,14 @@ export default function VolunteerPage() {
           variants={fadeInUp}
           className="w-full lg:w-1/2 flex flex-col items-start text-left z-20"
         >
-          <span className="text-sky-800 font-bold tracking-[0.3em] text-[11px] uppercase mb-5 px-3 py-1.5 bg-sky-100/70 rounded-full border border-sky-200 flex items-center gap-2">
+          {/* 👇 Applied #2A8ACD */}
+          <span className="text-[#2A8ACD] font-bold tracking-[0.3em] text-[11px] uppercase mb-5 px-3.5 py-1.5 bg-sky-50 rounded-full border border-[var(--tet-pink)]/40 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
             {t("v_hero_label", "COMMUNITY & YOUTH EMPOWERMENT")}
           </span>
 
-          <h1 className="font-serif text-5xl md:text-7xl font-bold text-sky-950 mb-6 leading-[1.1] tracking-tight">
+          {/* 👇 Applied #2A8ACD */}
+          <h1 className="font-serif text-5xl md:text-7xl font-bold text-[#2A8ACD] mb-6 leading-[1.1] tracking-tight">
             {t("v_hero_title1", "Shape the")} <br />
             <span className="italic font-normal text-pride-gradient font-playfair">
               {t("v_hero_title2", "Future Together.")}
@@ -190,15 +192,17 @@ export default function VolunteerPage() {
           </p>
 
           <div className="flex flex-wrap gap-4">
+            {/* 👇 Applied #2A8ACD */}
             <a
               href="#volunteer-form"
-              className="bg-gradient-to-r from-sky-400 to-pink-400 hover:from-sky-500 hover:to-pink-500 text-white px-8 py-3.5 rounded-full text-[11px] font-black uppercase tracking-widest shadow-md shadow-pink-200/50 hover:shadow-sky-300/50 transition-all hover:scale-105 active:scale-95"
+              className="bg-[#2A8ACD] hover:bg-[#2374b0] text-white px-8 py-3.5 rounded-full text-[11px] font-black uppercase tracking-widest shadow-md shadow-sky-100 transition-all hover:scale-105 active:scale-95"
             >
               {t("v_hero_btn1", "Volunteer Registry")}
             </a>
+            {/* 👇 Applied #2A8ACD */}
             <a
               href="#volunteer-youth"
-              className="border border-sky-300 hover:border-pink-400 bg-white/80 hover:bg-sky-50 text-sky-800 px-7 py-3.5 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all"
+              className="border border-[#2A8ACD] hover:border-pink-400 bg-white/80 hover:bg-sky-50 text-[#2A8ACD] px-7 py-3.5 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all"
             >
               {t("v_hero_btn2", "Explore Youth Services")}
             </a>
@@ -206,11 +210,12 @@ export default function VolunteerPage() {
         </motion.div>
 
         <div className="w-full lg:w-1/2 relative h-[420px] md:h-[580px]">
-          <div className="absolute top-10 right-0 w-4/5 h-full bg-sky-200/40 blur-[100px] rounded-full animate-pulse"></div>
+          <div className="absolute top-10 right-0 w-4/5 h-full bg-[#EFB9C5]/30 blur-[100px] rounded-full animate-pulse"></div>
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2 }}
+            // 👇 Applied #2A8ACD border
             className="absolute top-0 right-0 w-full h-full rounded-3xl md:rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white"
           >
             <Image
@@ -237,7 +242,8 @@ export default function VolunteerPage() {
             <span className="text-pink-600 font-bold uppercase text-[10px] tracking-[0.25em] block mb-2">
               {t("v_youth_label", "Empowering the Next Generation")}
             </span>
-            <h2 className="font-serif text-3xl md:text-5xl font-bold text-sky-950 mb-4">
+            {/* 👇 Applied #2A8ACD */}
+            <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#2A8ACD] mb-4">
               {t("v_youth_title", "Our Youth Services")}
             </h2>
             <p className="text-slate-600 text-sm md:text-base leading-relaxed">
@@ -254,7 +260,8 @@ export default function VolunteerPage() {
                 key={service.id}
                 id={`youth-card-${service.id}`}
                 whileHover={{ y: -6 }}
-                className="scroll-mt-32 bg-white/90 backdrop-blur-sm p-8 rounded-3xl border border-sky-200/80 shadow-sm hover:shadow-lg hover:border-pink-300 transition-all flex flex-col justify-between"
+                // 👇 Applied #2A8ACD hover border
+                className="scroll-mt-32 bg-white/90 backdrop-blur-sm p-8 rounded-3xl border border-sky-200/80 shadow-sm hover:shadow-lg hover:border-[#2A8ACD] transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-5">
@@ -265,7 +272,8 @@ export default function VolunteerPage() {
                       {t(`v_youth_${service.id}_tag`, service.tag)}
                     </span>
                   </div>
-                  <h3 className="text-sky-950 font-bold text-lg mb-2">
+                  {/* 👇 Applied #2A8ACD */}
+                  <h3 className="text-[#2A8ACD] font-bold text-lg mb-2">
                     {t(`v_youth_${service.id}_title`, service.title)}
                   </h3>
                   <p className="text-slate-600 text-xs leading-relaxed">
@@ -273,7 +281,8 @@ export default function VolunteerPage() {
                   </p>
                 </div>
                 <div className="pt-6 mt-4 border-t border-sky-50">
-                  <span className="text-sky-600 text-[11px] font-bold inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                  {/* 👇 Applied #2A8ACD */}
+                  <span className="text-[#2A8ACD] text-[11px] font-bold inline-flex items-center gap-1 group-hover:gap-2 transition-all">
                     Youth Driven • Stigma Free
                   </span>
                 </div>
@@ -307,16 +316,17 @@ export default function VolunteerPage() {
           <div className="p-8 md:p-14">
             {submitStatus === "success" ? (
               <div className="text-center py-12 px-4">
-                <div className="w-16 h-16 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 border border-sky-300">
+                <div className="w-16 h-16 bg-sky-100 text-[#2A8ACD] rounded-full flex items-center justify-center text-3xl mx-auto mb-4 border border-sky-300">
                   ✓
                 </div>
-                <h4 className="text-2xl font-bold text-sky-950 mb-2">Application Received!</h4>
+                {/* 👇 Applied #2A8ACD */}
+                <h4 className="text-2xl font-bold text-[#2A8ACD] mb-2">Application Received!</h4>
                 <p className="text-slate-600 text-sm max-w-md mx-auto mb-6">
                   Thank you for volunteering with Trans Equality Trust. Our administrative coordinator will review your profile and contact you soon.
                 </p>
                 <button
                   onClick={() => setSubmitStatus("idle")}
-                  className="bg-sky-600 hover:bg-sky-700 text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest"
+                  className="bg-[#2A8ACD] hover:bg-[#2374b0] text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest cursor-pointer"
                 >
                   Submit Another Response
                 </button>
@@ -331,14 +341,15 @@ export default function VolunteerPage() {
 
                 {/* Role Choice */}
                 <div>
-                  <label className="block text-sky-950 font-bold text-xs uppercase tracking-wider mb-3">
+                  {/* 👇 Applied #2A8ACD */}
+                  <label className="block text-[#2A8ACD] font-bold text-xs uppercase tracking-wider mb-3">
                     Select Volunteer Role <span className="text-pink-500">*</span>
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <label
                       className={`cursor-pointer p-4 rounded-2xl border-2 transition-all flex items-center gap-3 ${
                         formData.volunteer_type === "general"
-                          ? "border-sky-500 bg-sky-50/70 text-sky-950 shadow-sm"
+                          ? "border-[#2A8ACD] bg-sky-50/70 text-[#2A8ACD] shadow-sm"
                           : "border-slate-200 hover:border-sky-200 text-slate-600"
                       }`}
                     >
@@ -348,7 +359,7 @@ export default function VolunteerPage() {
                         value="general"
                         checked={formData.volunteer_type === "general"}
                         onChange={handleChange}
-                        className="accent-sky-500 w-4 h-4"
+                        className="accent-[#2A8ACD] w-4 h-4"
                       />
                       <div>
                         <div className="font-bold text-sm">General Volunteer</div>
@@ -382,7 +393,8 @@ export default function VolunteerPage() {
                 {/* Form Fields Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sky-950 font-bold text-xs uppercase tracking-wider mb-2">
+                    {/* 👇 Applied #2A8ACD */}
+                    <label className="block text-[#2A8ACD] font-bold text-xs uppercase tracking-wider mb-2">
                       Full Name <span className="text-pink-500">*</span>
                     </label>
                     <input
@@ -392,12 +404,13 @@ export default function VolunteerPage() {
                       value={formData.full_name}
                       onChange={handleChange}
                       placeholder="e.g. Kasun Fernando"
-                      className="w-full px-4 py-3.5 rounded-xl border border-sky-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none text-sm transition-all bg-sky-50/30"
+                      className="w-full px-4 py-3.5 rounded-xl border border-sky-200 focus:border-[#2A8ACD] focus:ring-2 focus:ring-sky-100 outline-none text-sm transition-all bg-sky-50/30"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sky-950 font-bold text-xs uppercase tracking-wider mb-2">
+                    {/* 👇 Applied #2A8ACD */}
+                    <label className="block text-[#2A8ACD] font-bold text-xs uppercase tracking-wider mb-2">
                       Contact Number <span className="text-pink-500">*</span>
                     </label>
                     <input
@@ -407,12 +420,13 @@ export default function VolunteerPage() {
                       value={formData.contact_number}
                       onChange={handleChange}
                       placeholder="07X XXX XXXX"
-                      className="w-full px-4 py-3.5 rounded-xl border border-sky-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none text-sm transition-all bg-sky-50/30"
+                      className="w-full px-4 py-3.5 rounded-xl border border-sky-200 focus:border-[#2A8ACD] focus:ring-2 focus:ring-sky-100 outline-none text-sm transition-all bg-sky-50/30"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sky-950 font-bold text-xs uppercase tracking-wider mb-2">
+                    {/* 👇 Applied #2A8ACD */}
+                    <label className="block text-[#2A8ACD] font-bold text-xs uppercase tracking-wider mb-2">
                       National Identity Card (NIC) <span className="text-pink-500">*</span>
                     </label>
                     <input
@@ -422,12 +436,13 @@ export default function VolunteerPage() {
                       value={formData.nic}
                       onChange={handleChange}
                       placeholder="e.g. 2000XXXXXXXX or XXXXXXXXXV"
-                      className="w-full px-4 py-3.5 rounded-xl border border-sky-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none text-sm transition-all bg-sky-50/30"
+                      className="w-full px-4 py-3.5 rounded-xl border border-sky-200 focus:border-[#2A8ACD] focus:ring-2 focus:ring-sky-100 outline-none text-sm transition-all bg-sky-50/30"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sky-950 font-bold text-xs uppercase tracking-wider mb-2">
+                    {/* 👇 Applied #2A8ACD */}
+                    <label className="block text-[#2A8ACD] font-bold text-xs uppercase tracking-wider mb-2">
                       Birth Year <span className="text-pink-500">*</span>
                     </label>
                     <input
@@ -439,14 +454,15 @@ export default function VolunteerPage() {
                       value={formData.birth_year}
                       onChange={handleChange}
                       placeholder="YYYY (e.g. 2002)"
-                      className="w-full px-4 py-3.5 rounded-xl border border-sky-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none text-sm transition-all bg-sky-50/30"
+                      className="w-full px-4 py-3.5 rounded-xl border border-sky-200 focus:border-[#2A8ACD] focus:ring-2 focus:ring-sky-100 outline-none text-sm transition-all bg-sky-50/30"
                     />
                   </div>
                 </div>
 
                 {/* District */}
                 <div>
-                  <label className="block text-sky-950 font-bold text-xs uppercase tracking-wider mb-2">
+                  {/* 👇 Applied #2A8ACD */}
+                  <label className="block text-[#2A8ACD] font-bold text-xs uppercase tracking-wider mb-2">
                     Current Living District <span className="text-pink-500">*</span>
                   </label>
                   <select
@@ -454,7 +470,7 @@ export default function VolunteerPage() {
                     required
                     value={formData.district}
                     onChange={handleChange}
-                    className="w-full px-4 py-3.5 rounded-xl border border-sky-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none text-sm transition-all bg-sky-50/30 text-slate-700"
+                    className="w-full px-4 py-3.5 rounded-xl border border-sky-200 focus:border-[#2A8ACD] focus:ring-2 focus:ring-sky-100 outline-none text-sm transition-all bg-sky-50/30 text-slate-700"
                   >
                     <option value="">-- Select Your District --</option>
                     {SRI_LANKA_DISTRICTS.map((district) => (
@@ -467,7 +483,8 @@ export default function VolunteerPage() {
 
                 {/* Consent */}
                 <div className="bg-sky-50/60 p-6 rounded-2xl border border-sky-200">
-                  <span className="block font-bold text-sky-950 text-xs uppercase tracking-wider mb-2">
+                  {/* 👇 Applied #2A8ACD */}
+                  <span className="block font-bold text-[#2A8ACD] text-xs uppercase tracking-wider mb-2">
                     Declaration &amp; Consent <span className="text-pink-500">*</span>
                   </span>
                   <p className="text-slate-600 text-xs md:text-sm leading-relaxed mb-4">
@@ -478,14 +495,15 @@ export default function VolunteerPage() {
                     )}
                   </p>
                   <div className="flex items-center gap-6">
-                    <label className="flex items-center gap-2 cursor-pointer font-bold text-sm text-sky-950">
+                    {/* 👇 Applied #2A8ACD */}
+                    <label className="flex items-center gap-2 cursor-pointer font-bold text-sm text-[#2A8ACD]">
                       <input
                         type="radio"
                         name="anti_stigma_consent"
                         value="yes"
                         checked={formData.anti_stigma_consent === "yes"}
                         onChange={handleChange}
-                        className="accent-sky-600 w-4 h-4"
+                        className="accent-[#2A8ACD] w-4 h-4"
                       />
                       <span>Yes (I Agree)</span>
                     </label>
@@ -506,10 +524,11 @@ export default function VolunteerPage() {
 
                 {/* Submit Button */}
                 <div>
+                  {/* 👇 Applied #2A8ACD */}
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full md:w-auto bg-gradient-to-r from-sky-400 to-pink-400 hover:from-sky-500 hover:to-pink-500 disabled:opacity-50 text-white px-12 py-4 rounded-full text-xs font-black uppercase tracking-widest shadow-md shadow-pink-200/60 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                    className="w-full md:w-auto bg-[#2A8ACD] hover:bg-[#2374b0] disabled:opacity-50 text-white px-12 py-4 rounded-full text-xs font-black uppercase tracking-widest shadow-md shadow-sky-100 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                   >
                     {isSubmitting ? "Submitting to Admin..." : t("v_form_btn", "Submit Volunteer Application")}
                   </button>
@@ -529,13 +548,14 @@ export default function VolunteerPage() {
           <span className="text-4xl text-pink-400 mb-4 block font-serif">
             &quot;
           </span>
-          <p className="font-serif text-2xl md:text-3xl text-sky-950 italic mb-4 leading-relaxed">
+          {/* 👇 Applied #2A8ACD */}
+          <p className="font-serif text-2xl md:text-3xl text-[#2A8ACD] italic mb-4 leading-relaxed">
             {t(
               "v_footer_quote",
               "Collective strength is the only path toward systemic equality. Your time is an investment in human dignity."
             )}
           </p>
-          <p className="text-[10px] font-bold text-sky-800 uppercase tracking-[0.3em]">
+          <p className="text-[10px] font-bold text-[#2A8ACD] uppercase tracking-[0.3em]">
             {t("v_footer_cite", "Trans Equality Trust Sri Lanka")}
           </p>
         </div>

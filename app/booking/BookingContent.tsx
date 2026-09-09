@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, Variants, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 
-const API_BASE = (process.env.NEXT_PUBLIC_BACKEND_URL || "https://web-production-3c6bc.up.railway.app").replace(/\/+$/, "");
+const API_BASE = (process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000").replace(/\/+$/, "");
 
 const fadeInUp: Variants = {
   initial: { opacity: 0, y: 24 },
@@ -179,17 +179,19 @@ export default function BookingPage() {
   };
 
   return (
-    <div className="w-full bg-[#f8fbff] text-slate-800 selection:bg-pink-100 selection:text-sky-900 overflow-x-hidden scroll-smooth">
+    <div className="w-full bg-[#f8fbff] text-slate-800 selection:bg-pink-100 selection:text-[#2A8ACD] overflow-x-hidden scroll-smooth">
       
       {/* 1. HERO SECTION */}
       <section id="se-hero" className="scroll-mt-28 relative max-w-7xl mx-auto px-6 pt-16 pb-20 md:pt-28 text-center">
         <motion.div initial="initial" whileInView="whileInView" viewport={{ once: true }} variants={fadeInUp}>
-          <span className="text-sky-800 font-bold tracking-[0.3em] text-[11px] uppercase mb-4 px-4 py-1.5 bg-sky-100/80 rounded-full border border-sky-200 inline-flex items-center gap-2">
+          {/* 👇 Applied #2A8ACD */}
+          <span className="text-[#2A8ACD] font-bold tracking-[0.3em] text-[11px] uppercase mb-4 px-4 py-1.5 bg-sky-50 rounded-full border border-[var(--tet-pink)]/40 inline-flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
             {t("se_hero_badge", "TET SOCIAL ENTERPRISES • SELF-SUSTAINING BUSINESSES")}
           </span>
 
-          <h1 className="font-serif text-5xl md:text-7xl font-bold text-sky-950 mb-6 tracking-tight leading-tight">
+          {/* 👇 Applied #2A8ACD */}
+          <h1 className="font-serif text-5xl md:text-7xl font-bold text-[#2A8ACD] mb-6 tracking-tight leading-tight">
             {t("se_hero_title1", "Purpose-Driven")}{" "}
             <span className="text-pride-gradient italic font-normal font-playfair">
               {t("se_hero_title2", "Enterprises.")}
@@ -204,10 +206,10 @@ export default function BookingPage() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-3">
-            <a href="#hall-booking" className="px-5 py-2.5 rounded-full bg-white border border-sky-200 text-sky-900 text-xs font-bold hover:border-pink-300 hover:shadow-sm transition-all">
+            <a href="#hall-booking" className="px-5 py-2.5 rounded-full bg-white border border-[#2A8ACD]/30 text-[#2A8ACD] text-xs font-bold hover:border-pink-300 hover:shadow-sm transition-all">
               🏛️ Hall Booking
             </a>
-            <a href="#daily-care" className="px-5 py-2.5 rounded-full bg-white border border-sky-200 text-sky-900 text-xs font-bold hover:border-pink-300 hover:shadow-sm transition-all">
+            <a href="#daily-care" className="px-5 py-2.5 rounded-full bg-white border border-[#2A8ACD]/30 text-[#2A8ACD] text-xs font-bold hover:border-pink-300 hover:shadow-sm transition-all">
               ☀️ Daily Care Center
             </a>
             <a href="#condom-business" className="px-5 py-2.5 rounded-full bg-white border border-pink-200 text-pink-700 text-xs font-bold hover:bg-pink-50 hover:shadow-sm transition-all">
@@ -232,17 +234,20 @@ export default function BookingPage() {
               sizes="(max-width: 768px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-sky-950/40 via-transparent to-transparent"></div>
-            <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl text-xs font-bold text-sky-950 border border-sky-200">
+            {/* 👇 Applied #2A8ACD */}
+            <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl text-xs font-bold text-[#2A8ACD] border border-sky-200">
               {t("se_hall_capacity", "📍 Capacity: 50 – 200 Guests")}
             </div>
           </div>
 
           <div className="w-full lg:w-1/2 flex flex-col items-start text-left">
-            <span className="text-sky-800 font-bold tracking-[0.25em] text-[10px] uppercase mb-2 px-3 py-1 bg-sky-50 rounded-full border border-sky-200">
+            {/* 👇 Applied #2A8ACD */}
+            <span className="text-[#2A8ACD] font-bold tracking-[0.25em] text-[10px] uppercase mb-2 px-3 py-1 bg-sky-50 rounded-full border border-sky-200">
               {t("se_hall_tag", "VENUE HIRE • SOCIAL ENTERPRISE")}
             </span>
 
-            <h2 className="font-serif text-3xl md:text-5xl font-bold text-sky-950 mb-4 leading-tight">
+            {/* 👇 Applied #2A8ACD */}
+            <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#2A8ACD] mb-4 leading-tight">
               {t("se_hall_title1", "TET Event Halls &")} <br />
               <span className="text-pride-gradient italic font-normal">
                 {t("se_hall_title2", "Space Booking.")}
@@ -258,27 +263,32 @@ export default function BookingPage() {
 
             <div className="grid grid-cols-2 gap-4 w-full mb-8 text-xs">
               <div className="p-3.5 rounded-2xl bg-sky-50/60 border border-sky-100">
-                <span className="font-bold text-sky-950 block">🔊 Audio / Visual Equipment</span>
+                {/* 👇 Applied #2A8ACD */}
+                <span className="font-bold text-[#2A8ACD] block">🔊 Audio / Visual Equipment</span>
                 <span className="text-slate-500 text-[11px]">HD Projectors &amp; PA Sound Setup</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-sky-50/60 border border-sky-100">
-                <span className="font-bold text-sky-950 block">☕ Kitchen &amp; Catering Access</span>
+                {/* 👇 Applied #2A8ACD */}
+                <span className="font-bold text-[#2A8ACD] block">☕ Kitchen &amp; Catering Access</span>
                 <span className="text-slate-500 text-[11px]">Tea, coffee &amp; dining service prep</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-sky-50/60 border border-sky-100">
-                <span className="font-bold text-sky-950 block">♿ Accessible &amp; Safe Space</span>
+                {/* 👇 Applied #2A8ACD */}
+                <span className="font-bold text-[#2A8ACD] block">♿ Accessible &amp; Safe Space</span>
                 <span className="text-slate-500 text-[11px]">Zero-discrimination guarantee</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-sky-50/60 border border-sky-100">
-                <span className="font-bold text-sky-950 block">🏷️ Competitive Rates</span>
+                {/* 👇 Applied #2A8ACD */}
+                <span className="font-bold text-[#2A8ACD] block">🏷️ Competitive Rates</span>
                 <span className="text-slate-500 text-[11px]">Hourly, half-day &amp; full-day packages</span>
               </div>
             </div>
 
+            {/* 👇 Applied #2A8ACD */}
             <button
               type="button"
               onClick={openHallModal}
-              className="bg-gradient-to-r from-sky-400 to-pink-400 hover:from-sky-500 hover:to-pink-500 text-white px-8 py-3.5 rounded-full text-xs font-black uppercase tracking-widest shadow-md shadow-pink-200/50 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+              className="bg-[#2A8ACD] hover:bg-[#2374b0] text-white px-8 py-3.5 rounded-full text-xs font-black uppercase tracking-widest shadow-md shadow-pink-200/50 hover:scale-105 active:scale-95 transition-all cursor-pointer"
             >
               {t("se_hall_btn", "Check Hall Availability & Pricing")}
             </button>
@@ -293,7 +303,8 @@ export default function BookingPage() {
             <span className="text-pink-600 font-bold uppercase text-[10px] tracking-[0.25em] block mb-2">
               {t("se_care_tag", "COMPASSIONATE COMMUNITY SERVICES")}
             </span>
-            <h2 className="font-serif text-3xl md:text-5xl font-bold text-sky-950 mb-4">
+            {/* 👇 Applied #2A8ACD */}
+            <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#2A8ACD] mb-4">
               {t("se_care_title1", "TET Daily")}{" "}
               <span className="text-pride-gradient italic font-normal">
                 {t("se_care_title2", "Care Center.")}
@@ -330,17 +341,19 @@ export default function BookingPage() {
             ].map((srv, idx) => (
               <div
                 key={idx}
-                className="bg-white/95 p-8 rounded-3xl border border-sky-200/80 shadow-sm hover:shadow-lg hover:border-pink-300 transition-all flex flex-col justify-between"
+                className="bg-white/95 p-8 rounded-3xl border border-sky-200/80 shadow-sm hover:shadow-lg hover:border-[#2A8ACD] transition-all flex flex-col justify-between"
               >
                 <div>
                   <span className="text-4xl mb-4 block">{srv.icon}</span>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-pink-600 bg-pink-50 px-3 py-1 rounded-full border border-pink-200 inline-block mb-3">
                     {srv.tag}
                   </span>
-                  <h3 className="font-serif text-xl font-bold text-sky-950 mb-3">{srv.title}</h3>
+                  {/* 👇 Applied #2A8ACD */}
+                  <h3 className="font-serif text-xl font-bold text-[#2A8ACD] mb-3">{srv.title}</h3>
                   <p className="text-slate-600 text-xs leading-relaxed">{srv.desc}</p>
                 </div>
-                <div className="pt-6 mt-4 border-t border-sky-50 text-[11px] font-bold text-sky-700">
+                {/* 👇 Applied #2A8ACD */}
+                <div className="pt-6 mt-4 border-t border-sky-50 text-[11px] font-bold text-[#2A8ACD]">
                   Daily &amp; Monthly Packages Available
                 </div>
               </div>
@@ -356,7 +369,8 @@ export default function BookingPage() {
             <span className="text-pink-600 font-bold uppercase text-[10px] tracking-[0.25em] block mb-2">
               {t("se_prod_tag", "SEXUAL HEALTH & WELLNESS ENTERPRISE")}
             </span>
-            <h2 className="font-serif text-3xl md:text-5xl font-bold text-sky-950 mb-4">
+            {/* 👇 Applied #2A8ACD */}
+            <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#2A8ACD] mb-4">
               {t("se_prod_title1", "Affordable Protection.")} <br />
               <span className="text-pride-gradient italic font-normal font-playfair">
                 {t("se_prod_title2", "Condom & Wellness Products.")}
@@ -375,7 +389,7 @@ export default function BookingPage() {
             {productsList.map((prod) => (
               <div
                 key={prod.id}
-                className="bg-gradient-to-b from-sky-50/50 to-pink-50/30 p-7 rounded-3xl border border-sky-100 flex flex-col justify-between hover:border-pink-300 transition-all"
+                className="bg-gradient-to-b from-sky-50/50 to-pink-50/30 p-7 rounded-3xl border border-sky-100 flex flex-col justify-between hover:border-[#2A8ACD] transition-all"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -386,17 +400,20 @@ export default function BookingPage() {
                       </span>
                     )}
                   </div>
-                  <h3 className="font-serif text-lg font-bold text-sky-950 mb-2">
+                  {/* 👇 Applied #2A8ACD */}
+                  <h3 className="font-serif text-lg font-bold text-[#2A8ACD] mb-2">
                     {resolveText(prod.title)}
                   </h3>
                   <p className="text-slate-600 text-xs leading-relaxed mb-4">
                     {resolveText(prod.description)}
                   </p>
-                  <div className="text-[11px] font-semibold text-sky-800 mb-1">{prod.specs}</div>
+                  {/* 👇 Applied #2A8ACD */}
+                  <div className="text-[11px] font-semibold text-[#2A8ACD] mb-1">{prod.specs}</div>
                 </div>
 
                 <div className="pt-4 border-t border-sky-200/60 flex items-center justify-between">
-                  <span className="text-sm font-black text-sky-950">
+                  {/* 👇 Applied #2A8ACD */}
+                  <span className="text-sm font-black text-[#2A8ACD]">
                     {prod.currency} {Number(prod.price).toLocaleString()}
                   </span>
                   <button
@@ -451,13 +468,16 @@ export default function BookingPage() {
                   <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl mx-auto">
                     ✓
                   </div>
-                  <h3 className="font-serif text-2xl font-bold text-sky-950">Inquiry Received</h3>
+                  {/* 👇 Applied #2A8ACD */}
+                  <h3 className="font-serif text-2xl font-bold text-[#2A8ACD]">Inquiry Received</h3>
                   <p className="text-slate-600 text-xs leading-relaxed max-w-xs mx-auto">
-                    Your request reference is <strong className="font-mono text-sky-900">{receiptRef}</strong>. Our commercial team will call you shortly to confirm arrangements.
+                    {/* 👇 Applied #2A8ACD */}
+                    Your request reference is <strong className="font-mono text-[#2A8ACD]">{receiptRef}</strong>. Our commercial team will call you shortly to confirm arrangements.
                   </p>
+                  {/* 👇 Applied #2A8ACD */}
                   <button
                     onClick={() => setActiveInquiry(null)}
-                    className="bg-[#1A365D] text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider mt-4 cursor-pointer"
+                    className="bg-[#2A8ACD] hover:bg-[#2374b0] text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider mt-4 cursor-pointer"
                   >
                     Close
                   </button>
@@ -468,7 +488,8 @@ export default function BookingPage() {
                     <span className="text-[10px] font-black uppercase text-pink-600 tracking-widest block">
                       {activeInquiry.type === "product_order" ? "Product Order Request" : "Venue Reservation Inquiry"}
                     </span>
-                    <h3 className="font-serif text-xl font-bold text-sky-950 mt-0.5">
+                    {/* 👇 Applied #2A8ACD */}
+                    <h3 className="font-serif text-xl font-bold text-[#2A8ACD] mt-0.5">
                       {activeInquiry.itemName}
                     </h3>
                   </div>
@@ -476,7 +497,8 @@ export default function BookingPage() {
                   {activeInquiry.type === "product_order" && activeInquiry.unitPrice && (
                     <div className="p-3 bg-sky-50 rounded-xl flex items-center justify-between text-xs">
                       <span className="text-slate-500">Unit Price:</span>
-                      <strong className="text-sky-950">LKR {activeInquiry.unitPrice.toLocaleString()}</strong>
+                      {/* 👇 Applied #2A8ACD */}
+                      <strong className="text-[#2A8ACD]">LKR {activeInquiry.unitPrice.toLocaleString()}</strong>
                     </div>
                   )}
 
@@ -543,10 +565,11 @@ export default function BookingPage() {
                     ></textarea>
                   </div>
 
+                  {/* 👇 Applied #2A8ACD */}
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#1A365D] hover:bg-slate-800 text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer disabled:opacity-50 mt-2"
+                    className="w-full bg-[#2A8ACD] hover:bg-[#2374b0] text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer disabled:opacity-50 mt-2"
                   >
                     {isSubmitting ? "Sending Request..." : "Submit Commercial Request"}
                   </button>

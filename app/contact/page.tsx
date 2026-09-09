@@ -76,7 +76,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="w-full bg-[#fdfcf9] text-[#2c3e50] selection:bg-[#e8d5c4] overflow-x-hidden scroll-smooth">
+    <div className="w-full bg-[#fdfcf9] text-[#2c3e50] selection:bg-pink-100 selection:text-[#2A8ACD] overflow-x-hidden scroll-smooth">
       
       {/* 1. HERO */}
       <section id="contact-hero" className="scroll-mt-28 max-w-7xl mx-auto px-6 pt-16 pb-12 text-center">
@@ -84,7 +84,8 @@ export default function ContactPage() {
           <span className="text-[#8e7f71] font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block">
             {t("ct_hero_label", "TRANS EQUALITY TRUST • CONNECT")}
           </span>
-          <h1 className="font-serif text-5xl md:text-7xl text-[#1a365d] mb-6 italic tracking-tight leading-tight">
+          {/* 👇 Applied #2A8ACD */}
+          <h1 className="font-serif text-5xl md:text-7xl text-[#2A8ACD] mb-6 italic tracking-tight leading-tight">
             {t("ct_hero_title", "Connect with Us.")}
           </h1>
           <p className="max-w-xl mx-auto text-gray-500 leading-relaxed text-sm md:text-base italic">
@@ -148,12 +149,14 @@ export default function ContactPage() {
             whileInView="whileInView"
             variants={fadeInUp}
             transition={{ delay: item.id * 0.1 }}
-            className="bg-white p-10 rounded-[2.5rem] border border-[#f3f0ec] hover:shadow-lg transition-all group"
+            // 👇 Applied #2A8ACD hover border
+            className="bg-white p-10 rounded-[2.5rem] border border-[#f3f0ec] hover:shadow-lg hover:border-[#2A8ACD] transition-all group"
           >
             <p className="text-[#8e7f71] text-[9px] font-bold uppercase tracking-[0.3em] mb-6">
               {t(`ct_g${item.id}_label`, item.label)}
             </p>
-            <h4 className="font-serif text-xl text-[#1a365d] mb-2">
+            {/* 👇 Applied #2A8ACD */}
+            <h4 className="font-serif text-xl text-[#2A8ACD] mb-2">
               {t(`ct_g${item.id}_val`, item.val)}
             </h4>
             <p className="text-gray-400 text-xs italic">
@@ -167,7 +170,8 @@ export default function ContactPage() {
       <section id="contact-form" className="scroll-mt-28 max-w-7xl mx-auto px-6 pb-24">
         <div className="bg-white rounded-[4rem] overflow-hidden shadow-2xl border border-[#f3f0ec] flex flex-col lg:flex-row">
           <div className="w-full lg:w-3/5 p-12 md:p-20">
-            <h3 className="font-serif text-3xl md:text-4xl text-[#1a365d] mb-10 tracking-tight">
+            {/* 👇 Applied #2A8ACD */}
+            <h3 className="font-serif text-3xl md:text-4xl text-[#2A8ACD] mb-10 tracking-tight">
               {t("ct_form_title", "Send a Message.")}
             </h3>
 
@@ -176,14 +180,17 @@ export default function ContactPage() {
                 <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl mx-auto">
                   ✓
                 </div>
-                <h4 className="font-serif text-2xl font-bold text-sky-950">Inquiry Dispatched</h4>
+                {/* 👇 Applied #2A8ACD */}
+                <h4 className="font-serif text-2xl font-bold text-[#2A8ACD]">Inquiry Dispatched</h4>
                 <p className="text-slate-600 text-xs leading-relaxed max-w-sm mx-auto">
-                  Thank you. Your message reference is <strong className="font-mono text-sky-900">{receiptRef}</strong>. Our desk officers will respond as soon as possible.
+                  {/* 👇 Applied #2A8ACD */}
+                  Thank you. Your message reference is <strong className="font-mono text-[#2A8ACD]">{receiptRef}</strong>. Our desk officers will respond as soon as possible.
                 </p>
+                {/* 👇 Applied #2A8ACD */}
                 <button
                   type="button"
                   onClick={() => setReceiptRef(null)}
-                  className="bg-[#1A365D] hover:bg-slate-800 text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider mt-4 cursor-pointer"
+                  className="bg-[#2A8ACD] hover:bg-[#2374b0] text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider mt-4 cursor-pointer"
                 >
                   Send Another Inquiry
                 </button>
@@ -200,7 +207,7 @@ export default function ContactPage() {
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full border-b border-gray-200 py-4 focus:border-[#d88998] outline-none transition-colors bg-transparent text-sm"
+                      className="w-full border-b border-gray-200 py-4 focus:border-[#2A8ACD] outline-none transition-colors bg-transparent text-sm"
                       placeholder="Full Name"
                     />
                   </div>
@@ -213,7 +220,7 @@ export default function ContactPage() {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full border-b border-gray-200 py-4 focus:border-[#d88998] outline-none transition-colors bg-transparent text-sm"
+                      className="w-full border-b border-gray-200 py-4 focus:border-[#2A8ACD] outline-none transition-colors bg-transparent text-sm"
                       placeholder="hello@domain.com"
                     />
                   </div>
@@ -227,7 +234,7 @@ export default function ContactPage() {
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full border-b border-gray-200 py-4 focus:border-[#d88998] outline-none transition-colors bg-transparent text-sm"
+                    className="w-full border-b border-gray-200 py-4 focus:border-[#2A8ACD] outline-none transition-colors bg-transparent text-sm"
                     placeholder="07X XXX XXXX"
                   />
                 </div>
@@ -241,15 +248,16 @@ export default function ContactPage() {
                     required
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full border-b border-gray-200 py-4 focus:border-[#d88998] outline-none transition-colors bg-transparent text-sm resize-none"
+                    className="w-full border-b border-gray-200 py-4 focus:border-[#2A8ACD] outline-none transition-colors bg-transparent text-sm resize-none"
                     placeholder="How can our desk assist you?"
                   ></textarea>
                 </div>
 
+                {/* 👇 Applied #2A8ACD */}
                 <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="bg-[#1a365d] hover:bg-slate-800 text-white px-12 py-4 rounded-full text-[10px] font-bold tracking-widest hover:shadow-xl transition-all uppercase active:scale-95 shadow-md cursor-pointer disabled:opacity-50"
+                  className="bg-[#2A8ACD] hover:bg-[#2374b0] text-white px-12 py-4 rounded-full text-[10px] font-bold tracking-widest hover:shadow-xl transition-all uppercase active:scale-95 shadow-md cursor-pointer disabled:opacity-50"
                 >
                   {isSubmitting ? "Transmitting..." : t("ct_form_btn", "Submit Inquiry")}
                 </button>
@@ -269,7 +277,7 @@ export default function ContactPage() {
               sizes="(max-width: 768px) 50vw, 30vw"
               unoptimized={isPreview}
             />
-            <div className="absolute inset-0 bg-[#1a365d]/10 backdrop-blur-[1px]"></div>
+            <div className="absolute inset-0 bg-[#2A8ACD]/10 backdrop-blur-[1px]"></div>
           </div>
         </div>
       </section>

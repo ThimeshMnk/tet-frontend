@@ -120,7 +120,8 @@ function ProjectCard({
       whileInView="whileInView"
       viewport={{ once: true }}
       variants={fadeInUp}
-      className="scroll-mt-32 bg-white/95 backdrop-blur-sm rounded-3xl md:rounded-[2.5rem] border border-sky-200/80 shadow-sm hover:shadow-xl hover:border-pink-300 transition-all flex flex-col overflow-hidden group"
+      // 👇 Applied #2A8ACD hover border
+      className="scroll-mt-32 bg-white/95 backdrop-blur-sm rounded-3xl md:rounded-[2.5rem] border border-sky-200/80 shadow-sm hover:shadow-xl hover:border-[#2A8ACD] transition-all flex flex-col overflow-hidden group"
     >
       {/* CARD IMAGE VIEWER */}
       <div className="p-4 pb-0">
@@ -149,7 +150,8 @@ function ProjectCard({
 
           {/* Badges */}
           <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-sky-900 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm border border-sky-200">
+            {/* 👇 Applied #2A8ACD */}
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#2A8ACD] bg-white/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm border border-sky-200">
               {t(`pj_${project.id}_cat`, project.defCat)}
             </span>
           </div>
@@ -176,8 +178,8 @@ function ProjectCard({
               }}
               className={`relative h-12 w-16 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
                 activeImageIndex === idx
-                  ? "border-pink-500 scale-105 shadow-md shadow-pink-200/50"
-                  : "border-sky-100 opacity-60 hover:opacity-100 hover:border-sky-300"
+                  ? "border-[#2A8ACD] scale-105 shadow-md shadow-sky-200/50"
+                  : "border-sky-100 opacity-60 hover:opacity-100 hover:border-[#2A8ACD]"
               }`}
             >
               <Image
@@ -196,7 +198,8 @@ function ProjectCard({
       {/* CARD CONTENT */}
       <div className="p-7 md:p-8 flex flex-col justify-between flex-grow">
         <div>
-          <h3 className="font-serif text-2xl md:text-3xl font-bold text-sky-950 mb-3 leading-snug">
+          {/* 👇 Applied #2A8ACD */}
+          <h3 className="font-serif text-2xl md:text-3xl font-bold text-[#2A8ACD] mb-3 leading-snug">
             {title1}{" "}
             <span className="text-pride-gradient italic font-normal">
               {title2}
@@ -210,14 +213,14 @@ function ProjectCard({
 
         {/* Action Bar */}
         <div className="pt-5 border-t border-sky-100 flex items-center justify-between">
-          <span className="text-[11px] font-bold text-sky-700">
+          <span className="text-[11px] font-bold text-[#2A8ACD]">
             TET Community Initiative
           </span>
 
           <button
             type="button"
             onClick={() => onOpenDetails(project)}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-pink-600 hover:text-pink-700 transition-all uppercase tracking-wider group-hover:translate-x-1 cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#2A8ACD] hover:text-[#2374b0] transition-all uppercase tracking-wider group-hover:translate-x-1 cursor-pointer"
           >
             View Case Study &amp; Details <span>→</span>
           </button>
@@ -264,7 +267,7 @@ function ProjectDetailModal({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-    onClick={onClose} 
+      onClick={onClose}
       className="fixed inset-0 z-50 bg-sky-950/70 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
     >
       <motion.div
@@ -272,7 +275,7 @@ function ProjectDetailModal({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-         onClick={(e) => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
         className="bg-white w-full max-w-4xl rounded-3xl md:rounded-[2.5rem] shadow-2xl border border-sky-100 overflow-hidden relative flex flex-col my-8"
       >
         {/* Close Button */}
@@ -309,7 +312,7 @@ function ProjectDetailModal({
 
           {/* Badges */}
           <div className="absolute top-5 left-5 flex gap-2">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-sky-950 bg-white/95 backdrop-blur-md px-4 py-1.5 rounded-full shadow-md">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#2A8ACD] bg-white/95 backdrop-blur-md px-4 py-1.5 rounded-full shadow-md">
               {category}
             </span>
             <span className="text-[11px] font-bold text-pink-700 bg-pink-50/95 backdrop-blur-md px-4 py-1.5 rounded-full border border-pink-200">
@@ -327,7 +330,7 @@ function ProjectDetailModal({
                   onClick={() => setModalImageIndex(idx)}
                   className={`relative h-12 w-16 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
                     modalImageIndex === idx
-                      ? "border-pink-500 scale-105 shadow-md shadow-pink-500/50"
+                      ? "border-[#2A8ACD] scale-105 shadow-md shadow-sky-500/50"
                       : "border-white/60 opacity-60 hover:opacity-100"
                   }`}
                 >
@@ -346,16 +349,17 @@ function ProjectDetailModal({
 
         {/* Modal Story Content */}
         <div className="p-8 sm:p-12 overflow-y-auto max-h-[50vh]">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-sky-950 mb-4 leading-tight">
+          {/* 👇 Applied #2A8ACD */}
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2A8ACD] mb-4 leading-tight">
             {title1}{" "}
             <span className="text-pride-gradient italic font-normal">
               {title2}
             </span>
           </h2>
 
-          <div className="w-12 h-1 bg-gradient-to-r from-sky-400 to-pink-500 rounded-full mb-6"></div>
+          <div className="w-12 h-1 bg-gradient-to-r from-[#2A8ACD] to-pink-500 rounded-full mb-6"></div>
 
-          <h4 className="text-xs font-bold uppercase tracking-widest text-pink-600 mb-2">
+          <h4 className="text-xs font-bold uppercase tracking-widest text-[#2A8ACD] mb-2">
             Project Case Study &amp; Impact
           </h4>
           <p className="text-slate-700 text-sm sm:text-base leading-relaxed whitespace-pre-line mb-8">
@@ -364,7 +368,7 @@ function ProjectDetailModal({
 
           <div className="p-5 rounded-2xl bg-sky-50/80 border border-sky-200/70 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-sky-800 block">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[#2A8ACD] block">
                 Trans Equality Trust Program
               </span>
               <span className="text-xs text-slate-600 font-medium">
@@ -374,7 +378,7 @@ function ProjectDetailModal({
             <button
               type="button"
               onClick={onClose}
-              className="bg-sky-950 hover:bg-sky-900 text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer"
+              className="bg-[#2A8ACD] hover:bg-[#2374b0] text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer"
             >
               Close Case Study
             </button>
@@ -391,7 +395,6 @@ export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
   // Cross-origin scroll & auto-modal event listener from Livewire Admin
-  // Listen for Livewire Admin Messages
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       // 1. Open Modal Trigger
@@ -451,12 +454,14 @@ export default function ProjectsPage() {
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <span className="text-sky-800 font-bold tracking-[0.3em] text-[11px] uppercase mb-5 px-4 py-1.5 bg-sky-100/80 rounded-full border border-sky-200 inline-flex items-center gap-2">
+          {/* 👇 Applied #2A8ACD */}
+          <span className="text-[#2A8ACD] font-bold tracking-[0.3em] text-[11px] uppercase mb-5 px-4 py-1.5 bg-sky-50 rounded-full border border-[var(--tet-pink)]/40 inline-flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
             {t("pj_hero_label", "STRATEGIC ADVOCACY • OUR PROJECTS")}
           </span>
 
-          <h1 className="font-serif text-5xl md:text-7xl font-bold text-sky-950 mb-6 tracking-tight">
+          {/* 👇 Applied #2A8ACD */}
+          <h1 className="font-serif text-5xl md:text-7xl font-bold text-[#2A8ACD] mb-6 tracking-tight">
             {t("pj_hero_title1", "Advocacy in")}{" "}
             <span className="text-pride-gradient italic font-normal font-playfair">
               {t("pj_hero_title2", "Action & Motion.")}
@@ -505,9 +510,10 @@ export default function ProjectsPage() {
               )}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
+              {/* 👇 Applied #2A8ACD */}
               <Link
                 href="/volunteer"
-                className="bg-gradient-to-r from-sky-400 to-pink-400 hover:from-sky-500 hover:to-pink-500 text-white px-8 py-3.5 rounded-full text-[11px] font-black uppercase tracking-widest shadow-md shadow-pink-300/40 hover:scale-105 active:scale-95 transition-all"
+                className="bg-[#2A8ACD] hover:bg-[#2374b0] text-white px-8 py-3.5 rounded-full text-[11px] font-black uppercase tracking-widest shadow-md shadow-sky-100 hover:scale-105 active:scale-95 transition-all"
               >
                 Volunteer with a Project
               </Link>

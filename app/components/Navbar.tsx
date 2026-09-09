@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "./Logo";
@@ -18,21 +18,6 @@ export default function Navbar() {
     { code: "ta", label: "தமி", name: "தமிழ்" },
   ];
 
-
-  useEffect(() => {
-    const handleDrawerMessage = (event: MessageEvent) => {
-      if (event.data?.type === "TET_OPEN_NAV_DRAWER") {
-        setIsMobileMenuOpen(true);
-      }
-      if (event.data?.type === "TET_CLOSE_NAV_DRAWER") {
-        setIsMobileMenuOpen(false);
-      }
-    };
-
-    window.addEventListener("message", handleDrawerMessage);
-    return () => window.removeEventListener("message", handleDrawerMessage);
-  }, []);
-  
   const navLinks = [
     { name: t("nav_home", "Home"), href: "/" },
     { name: t("nav_about", "About"), href: "/about" },
@@ -47,22 +32,20 @@ export default function Navbar() {
   const customLogo = data?.["site_logo"];
 
   return (
-    // 👇 Light Pink Theme Gradient & Border
-    <nav className="bg-gradient-to-r from-pink-100/90 via-pink-50/95 to-rose-100/85 backdrop-blur-md sticky top-0 z-50 border-b border-pink-200/80 shadow-sm shadow-pink-100/50">
-      {/* Pride accent top line */}
-      <div className="h-[2.5px] w-full bg-pride opacity-90"></div>
-
+    // 👇 Solid clean light pink background with no gray/silver gradients
+    <nav className="bg-[#fbf4f6] backdrop-blur-md sticky top-0 z-50 border-b border-[#EFB9C5]/60 shadow-sm">
+      
       <div className="px-4 md:px-8 w-full">
         <div className="flex justify-between h-20 items-center">
           
-          {/* LOGO: Dynamic Uploaded Logo with Fallback to Logo Component */}
+          {/* LOGO */}
           <Link href="/" className="flex-shrink-0 flex items-center">
             {customLogo ? (
               <div className="relative h-9 md:h-12 w-36 md:w-48">
                 <Image
                   src={getAssetUrl(customLogo)}
                   fill
-                  alt="Trans Equality Trust"
+                  alt="Trans Equality Trust Logo"
                   className="object-contain object-left"
                   priority
                   unoptimized={isPreview}
@@ -85,10 +68,10 @@ export default function Navbar() {
                 >
                   <Link 
                     href={link.href} 
-                    className="hover:text-pink-600 transition-colors flex items-center gap-1 py-2"
+                    className="hover:text-[#2A8ACD] transition-colors flex items-center gap-1 py-2"
                   >
                     {link.name}
-                    <svg className="w-2.5 h-2.5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-2.5 h-2.5 text-[#2A8ACD]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
                     </svg>
                   </Link>
@@ -102,16 +85,16 @@ export default function Navbar() {
                         exit={{ opacity: 0, y: 8 }} 
                         className="absolute top-full left-0 pt-1 w-52"
                       >
-                        <div className="bg-white/95 backdrop-blur-md shadow-lg shadow-pink-200/50 rounded-2xl py-2 border border-pink-200">
+                        <div className="bg-white shadow-lg shadow-pink-100/50 rounded-2xl py-2 border border-[#EFB9C5]/40">
                           <Link 
                             href="/services" 
-                            className="block px-4 py-2 hover:bg-pink-50 text-slate-700 hover:text-pink-700 transition-colors text-[10px]"
+                            className="block px-4 py-2 hover:bg-pink-50 text-slate-700 hover:text-[#2A8ACD] transition-colors text-[10px]"
                           >
                             {t("nav_drop_services", "Advocacy Services")}
                           </Link>
                           <Link 
                             href="/volunteer" 
-                            className="block px-4 py-2 hover:bg-pink-50 text-slate-700 hover:text-pink-600 transition-colors text-[10px]"
+                            className="block px-4 py-2 hover:bg-pink-50 text-slate-700 hover:text-[#2A8ACD] transition-colors text-[10px]"
                           >
                             {t("nav_drop_volunteer", "Volunteer")}
                           </Link>
@@ -124,7 +107,7 @@ export default function Navbar() {
                 <Link 
                   key={link.name} 
                   href={link.href} 
-                  className="hover:text-pink-600 transition-colors whitespace-nowrap"
+                  className="hover:text-[#2A8ACD] transition-colors whitespace-nowrap"
                 >
                   {link.name}
                 </Link>
@@ -135,7 +118,7 @@ export default function Navbar() {
           {/* RIGHT ACTIONS: DONATE + TRILINGUAL SWITCHER */}
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
             {/* 3-Language Changer Pills */}
-            <div className="flex items-center bg-white/90 border border-pink-200 rounded-full p-1 shadow-sm">
+            <div className="flex items-center bg-white border border-[#EFB9C5]/60 rounded-full p-1 shadow-sm">
               {languages.map((lang) => (
                 <button
                   key={lang.code}
@@ -144,8 +127,8 @@ export default function Navbar() {
                   title={lang.name}
                   className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase transition-all cursor-pointer ${
                     locale === lang.code
-                      ? "bg-gradient-to-r from-sky-400 to-pink-400 text-white shadow-sm shadow-pink-200/50 scale-105"
-                      : "text-slate-600 hover:text-pink-600"
+                      ? "bg-[#2A8ACD] text-white shadow-sm scale-105"
+                      : "text-slate-600 hover:text-[#2A8ACD]"
                   }`}
                 >
                   {lang.label}
@@ -156,7 +139,7 @@ export default function Navbar() {
             {/* Donate Button */}
             <Link 
               href={t("nav_donate_url", "/donate")} 
-              className="bg-gradient-to-r from-sky-400 to-pink-400 hover:from-sky-500 hover:to-pink-500 text-white text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-full shadow-md shadow-pink-200/50 hover:shadow-sky-200/50 transition-all hover:scale-105 active:scale-95"
+              className="bg-[#2A8ACD] hover:bg-[#2374b0] text-white text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-full shadow-md shadow-sky-100 transition-all hover:scale-105 active:scale-95"
             >
               {t("btn_donate", "Donate")}
             </Link>
@@ -164,7 +147,7 @@ export default function Navbar() {
 
           {/* MOBILE MENU TOGGLE */}
           <button 
-            className="lg:hidden p-2 text-slate-700 hover:text-pink-600 transition-colors" 
+            className="lg:hidden p-2 text-[#2A8ACD] hover:opacity-80 transition-colors" 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle Menu"
           >
@@ -175,14 +158,14 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* MOBILE DRAWER (SOFT PINK THEME) */}
+      {/* MOBILE DRAWER */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
             initial={{ opacity: 0, height: 0 }} 
             animate={{ opacity: 1, height: "auto" }} 
             exit={{ opacity: 0, height: 0 }} 
-            className="lg:hidden bg-gradient-to-b from-pink-50/98 to-white/98 backdrop-blur-md border-b border-pink-200 overflow-hidden"
+            className="lg:hidden bg-white border-b border-[#EFB9C5]/40 overflow-hidden shadow-md"
           >
             <div className="flex flex-col p-6 space-y-4 text-[12px] font-bold uppercase tracking-widest text-slate-700">
               
@@ -190,14 +173,14 @@ export default function Navbar() {
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
                   Language:
                 </span>
-                <div className="flex gap-1.5 bg-white p-1 rounded-full border border-pink-200">
+                <div className="flex gap-1.5 bg-slate-50 p-1 rounded-full border border-[#EFB9C5]/40">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
                       onClick={() => setLocale(lang.code)}
                       className={`px-3 py-1 rounded-full text-[10px] font-bold ${
                         locale === lang.code
-                          ? "bg-gradient-to-r from-sky-400 to-pink-400 text-white shadow-sm"
+                          ? "bg-[#2A8ACD] text-white shadow-sm"
                           : "text-slate-600"
                       }`}
                     >
@@ -211,7 +194,7 @@ export default function Navbar() {
                 <div key={link.name}>
                   <Link 
                     href={link.href} 
-                    className="hover:text-pink-600 transition-colors"
+                    className="hover:text-[#2A8ACD] transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.name}
@@ -220,7 +203,7 @@ export default function Navbar() {
                     <div className="pl-4 pt-2 space-y-2 text-slate-500 text-[10px]">
                       <Link 
                         href="/volunteer" 
-                        className="block hover:text-pink-600"
+                        className="block hover:text-[#2A8ACD]"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {t("nav_drop_volunteer", "Volunteer")}
@@ -234,9 +217,9 @@ export default function Navbar() {
                 <Link 
                   href={t("nav_donate_url", "/donate")} 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-center bg-gradient-to-r from-sky-400 to-pink-400 text-white py-3 rounded-full text-[10px] font-black uppercase tracking-widest shadow-md"
+                  className="block text-center bg-[#2A8ACD] text-white py-3 rounded-full text-[10px] font-black uppercase tracking-widest shadow-md"
                 >
-                  {t("btn_donate", "Donate")}
+                  {t('btn_donate', 'Donate')}
                 </Link>
               </div>
             </div>

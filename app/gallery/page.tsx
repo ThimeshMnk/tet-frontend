@@ -113,7 +113,8 @@ function EventDetailModal({
     const shareText = `${title} - Trans Equality Trust Sri Lanka`;
 
     if (platform === "facebook") {
-      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, "_blank");
+      // Opens official Facebook page
+      window.open("https://www.facebook.com/share/12G6Xq5jZ15/", "_blank", "width=600,height=500");
     } else if (platform === "whatsapp") {
       window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + shareUrl)}`, "_blank");
     } else if (platform === "copy") {
@@ -166,11 +167,13 @@ function EventDetailModal({
 
         <div className="p-6 md:p-8 space-y-6 max-h-[55vh] overflow-y-auto">
           <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-sky-50/70 border border-sky-100 text-xs">
-            <div className="flex items-center gap-2 text-sky-950 font-bold">
+            {/* 👇 Applied #2A8ACD */}
+            <div className="flex items-center gap-2 text-[#2A8ACD] font-bold">
               <span>📅</span>
               <span>{date}</span>
             </div>
-            <div className="flex items-center gap-2 text-sky-950 font-bold">
+            {/* 👇 Applied #2A8ACD */}
+            <div className="flex items-center gap-2 text-[#2A8ACD] font-bold">
               <span>📍</span>
               <span>{location}</span>
             </div>
@@ -186,7 +189,8 @@ function EventDetailModal({
 
           {galleryPhotos.length > 0 && (
             <div className="pt-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-sky-900 block mb-3">
+              {/* 👇 Applied #2A8ACD */}
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#2A8ACD] block mb-3">
                 Event Photo Gallery
               </span>
               <div className="grid grid-cols-2 gap-4">
@@ -200,7 +204,8 @@ function EventDetailModal({
           )}
 
           <div className="pt-6 border-t border-sky-100 flex flex-wrap items-center gap-3">
-            <span className="text-xs font-black uppercase tracking-wider text-sky-950 mr-auto">
+            {/* 👇 Applied #2A8ACD */}
+            <span className="text-xs font-black uppercase tracking-wider text-[#2A8ACD] mr-auto">
               Share Event:
             </span>
 
@@ -318,12 +323,14 @@ export default function GalleryPage() {
       <section id="gallery-hero" className="scroll-mt-28 py-20 md:py-28 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-sky-800 font-bold tracking-[0.3em] text-[11px] uppercase mb-4 px-4 py-1.5 bg-sky-100/80 rounded-full border border-sky-200 inline-flex items-center gap-2">
+            {/* 👇 Applied #2A8ACD */}
+            <span className="text-[#2A8ACD] font-bold tracking-[0.3em] text-[11px] uppercase mb-4 px-4 py-1.5 bg-sky-50 rounded-full border border-[var(--tet-pink)]/40 inline-flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
               {t("gl_events_tag", "COMMUNITY HAPPENINGS • EVENTS & ARCHIVES")}
             </span>
 
-            <h1 className="font-serif text-4xl md:text-6xl font-bold text-sky-950 mb-4 tracking-tight">
+            {/* 👇 Applied #2A8ACD */}
+            <h1 className="font-serif text-4xl md:text-6xl font-bold text-[#2A8ACD] mb-4 tracking-tight">
               {t("gl_gallery_title", "Visual Storytelling")} <br />
               <span className="text-pride-gradient italic font-normal font-playfair">
                 &amp; Community Events
@@ -358,7 +365,8 @@ export default function GalleryPage() {
                   transition={{ delay: i * 0.06, duration: 0.6 }}
                   whileHover={{ y: -6 }}
                   onClick={() => setSelectedEvent(event)}
-                  className="scroll-mt-32 group bg-white rounded-3xl md:rounded-[2.5rem] overflow-hidden border border-sky-200/80 shadow-sm hover:shadow-xl hover:border-pink-300 transition-all flex flex-col justify-between cursor-pointer"
+                  // 👇 Applied #2A8ACD hover border
+                  className="scroll-mt-32 group bg-white rounded-3xl md:rounded-[2.5rem] overflow-hidden border border-sky-200/80 shadow-sm hover:shadow-xl hover:border-[#2A8ACD] transition-all flex flex-col justify-between cursor-pointer"
                 >
                   <div>
                     <div className="relative aspect-[4/3] w-full overflow-hidden bg-sky-50">
@@ -372,7 +380,8 @@ export default function GalleryPage() {
                       <div className="absolute inset-0 bg-gradient-to-t from-sky-950/60 via-transparent to-transparent"></div>
 
                       <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-sky-900 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full shadow-sm border border-sky-200">
+                        {/* 👇 Applied #2A8ACD */}
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#2A8ACD] bg-white/95 backdrop-blur-md px-3 py-1 rounded-full shadow-sm border border-sky-200">
                           {category}
                         </span>
                         <span className="text-[10px] font-black text-pink-700 bg-pink-50/95 backdrop-blur-md px-3 py-1 rounded-full border border-pink-200">
@@ -387,7 +396,8 @@ export default function GalleryPage() {
                     </div>
 
                     <div className="p-6 md:p-7">
-                      <h3 className="font-serif text-xl font-bold text-sky-950 mb-2.5 leading-snug group-hover:text-sky-700 transition-colors">
+                      {/* 👇 Applied #2A8ACD hover color */}
+                      <h3 className="font-serif text-xl font-bold text-[#2A8ACD] mb-2.5 leading-snug group-hover:text-[#2374b0] transition-colors">
                         {title}
                       </h3>
                       <p className="text-slate-600 text-xs leading-relaxed line-clamp-3">
@@ -397,7 +407,8 @@ export default function GalleryPage() {
                   </div>
 
                   <div className="px-6 pb-6 pt-2 flex items-center justify-between border-t border-sky-50 text-[11px] font-bold">
-                    <span className="text-pink-600 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                    {/* 👇 Applied #2A8ACD */}
+                    <span className="text-[#2A8ACD] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
                       Read Details &amp; Share →
                     </span>
                     <span className="text-slate-400">TET Archive</span>

@@ -25,7 +25,6 @@ interface ActivityItem {
 }
 
 // Modal Component
-// Modal Component
 function ActivityDetailModal({
   activity,
   onClose,
@@ -53,6 +52,7 @@ function ActivityDetailModal({
   const imgUrl = getAssetUrl(activity.img || activity.image, "https://images.unsplash.com/photo-1516549655169-df83a0774514");
 
   const shareToFacebook = () => {
+    // Opens official Facebook page
     window.open("https://www.facebook.com/share/12G6Xq5jZ15/", "_blank", "width=600,height=500");
   };
 
@@ -106,8 +106,10 @@ function ActivityDetailModal({
 
         <div className="p-6 md:p-8 space-y-6 max-h-[50vh] overflow-y-auto">
           <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-sky-50/70 border border-sky-100 text-xs">
-            <div className="font-bold text-sky-950">📅 {date}</div>
-            <div className="font-bold text-sky-950">📍 {location}</div>
+            {/* 👇 Applied #2A8ACD */}
+            <div className="font-bold text-[#2A8ACD]">📅 {date}</div>
+            {/* 👇 Applied #2A8ACD */}
+            <div className="font-bold text-[#2A8ACD]">📍 {location}</div>
             <div className="text-[10px] font-black uppercase tracking-wider text-pink-700 bg-pink-100 px-3 py-1 rounded-full">
               TET Field Report
             </div>
@@ -120,7 +122,8 @@ function ActivityDetailModal({
 
           {/* Social Sharing Bar */}
           <div className="pt-6 border-t border-sky-100 flex flex-wrap items-center justify-between gap-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-sky-950">
+            {/* 👇 Applied #2A8ACD */}
+            <span className="text-xs font-bold uppercase tracking-wider text-[#2A8ACD]">
               Publish / Share Update:
             </span>
             <div className="flex items-center gap-2">
@@ -143,6 +146,7 @@ function ActivityDetailModal({
     </div>
   );
 }
+
 // Main News Page
 export default function NewsPage() {
   const { t, getAssetUrl, locale } = useLanguage();
@@ -228,11 +232,13 @@ export default function NewsPage() {
       <section id="news-hero" className="scroll-mt-28 pt-20 pb-12 px-6">
         <div className="max-w-7xl mx-auto border-b border-sky-100 pb-10 text-center md:text-left">
           <motion.div initial="initial" animate="whileInView" variants={fadeInUp}>
-            <span className="text-sky-800 font-bold text-[11px] tracking-[0.3em] uppercase mb-4 px-3.5 py-1.5 bg-sky-100/80 rounded-full border border-sky-200 inline-flex items-center gap-2">
+            {/* 👇 Applied #2A8ACD */}
+            <span className="text-[#2A8ACD] font-bold text-[11px] tracking-[0.3em] uppercase mb-4 px-3.5 py-1.5 bg-sky-50 rounded-full border border-[var(--tet-pink)]/40 inline-flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
               {t("act_hero_label", "GRASSROOTS IN ACTION • DAILY FIELD UPDATES")}
             </span>
-            <h1 className="font-serif text-5xl md:text-7xl font-bold text-sky-950 mb-4 tracking-tight">
+            {/* 👇 Applied #2A8ACD */}
+            <h1 className="font-serif text-5xl md:text-7xl font-bold text-[#2A8ACD] mb-4 tracking-tight">
               {t("act_hero_title1", "Daily")}{" "}
               <span className="text-pride-gradient italic font-normal font-playfair">
                 {t("act_hero_title2", "Activities.")}
@@ -268,7 +274,8 @@ export default function NewsPage() {
                 transition={{ delay: i * 0.05 }}
                 whileHover={{ y: -6 }}
                 onClick={() => setSelectedActivity(activity)}
-                className="scroll-mt-32 group bg-white rounded-3xl md:rounded-[2.5rem] overflow-hidden border border-sky-200/80 shadow-sm hover:shadow-xl hover:border-pink-300 transition-all flex flex-col justify-between cursor-pointer"
+                // 👇 Applied #2A8ACD hover border
+                className="scroll-mt-32 group bg-white rounded-3xl md:rounded-[2.5rem] overflow-hidden border border-sky-200/80 shadow-sm hover:shadow-xl hover:border-[#2A8ACD] transition-all flex flex-col justify-between cursor-pointer"
               >
                 <div>
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-sky-50">
@@ -294,7 +301,8 @@ export default function NewsPage() {
                   </div>
 
                   <div className="p-6 md:p-7">
-                    <h3 className="font-serif text-xl font-bold text-sky-950 mb-2.5 leading-snug group-hover:text-sky-700 transition-colors">
+                    {/* 👇 Applied #2A8ACD hover color */}
+                    <h3 className="font-serif text-xl font-bold text-[#2A8ACD] mb-2.5 leading-snug group-hover:text-[#2374b0] transition-colors">
                       {title}
                     </h3>
                     <p className="text-slate-600 text-xs leading-relaxed line-clamp-3 mb-4">
@@ -304,7 +312,8 @@ export default function NewsPage() {
                 </div>
 
                 <div className="p-6 pt-3 border-t border-sky-50 flex items-center justify-between bg-sky-50/30">
-                  <span className="text-[11px] font-bold text-pink-600 group-hover:underline">
+                  {/* 👇 Applied #2A8ACD */}
+                  <span className="text-[11px] font-bold text-[#2A8ACD] group-hover:underline">
                     View Full Details →
                   </span>
                   <span className="text-slate-400 text-[10px]">TET Archive</span>

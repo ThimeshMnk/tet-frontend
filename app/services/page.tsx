@@ -71,7 +71,7 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <div className="bg-[#f8fafc] text-slate-900 overflow-x-hidden scroll-smooth selection:bg-blue-100">
+    <div className="bg-[#f8fafc] text-slate-900 overflow-x-hidden scroll-smooth selection:bg-sky-100">
       
       {/* 1. HERO SECTION */}
       <section id="services-hero" className="scroll-mt-28 relative bg-slate-950 py-24 md:py-32 overflow-hidden">
@@ -88,7 +88,8 @@ export default function ServicesPage() {
         </div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} className="max-w-3xl">
-            <span className="text-blue-400 font-bold tracking-widest text-xs uppercase mb-4 block">
+            {/* 👇 Applied #2A8ACD (tet-blue) */}
+            <span className="text-[#2A8ACD] font-bold tracking-widest text-xs uppercase mb-4 block">
               {t("s_hero_label", "Our Essential Services")}
             </span>
             <h1 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
@@ -115,7 +116,8 @@ export default function ServicesPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: service.id * 0.08 }}
-              className="scroll-mt-32 bg-white group rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-2xl transition-all duration-500"
+              // 👇 Applied #2A8ACD hover border
+              className="scroll-mt-32 bg-white group rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-2xl hover:border-[#2A8ACD] transition-all duration-500"
             >
               <div className="relative h-56 overflow-hidden">
                 <Image
@@ -129,12 +131,14 @@ export default function ServicesPage() {
                   unoptimized={isPreview}
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
-                <div className="absolute top-4 left-4 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-md">
+                {/* 👇 Applied #2A8ACD */}
+                <div className="absolute top-4 left-4 bg-[#2A8ACD] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-md">
                   {t(`service_${service.id}_tag`, service.tag)}
                 </div>
               </div>
               <div className="p-8">
-                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
+                {/* 👇 Applied #2A8ACD hover color */}
+                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#2A8ACD] transition-colors">
                   {t(`service_${service.id}_title`, service.title)}
                 </h3>
                 <p className="text-slate-500 text-sm leading-relaxed mb-6">
@@ -143,12 +147,6 @@ export default function ServicesPage() {
                     "Our specialized team provides immediate intervention and support ensuring fundamental rights are upheld."
                   )}
                 </p>
-                {/* <Link
-                  href={t("btn_request_url", "/contact")}
-                  className="text-blue-600 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:gap-3 transition-all"
-                >
-                  {t("btn_request", "Request Assistance")} <span>→</span>
-                </Link> */}
               </div>
             </motion.div>
           ))}
@@ -159,7 +157,8 @@ export default function ServicesPage() {
       <section id="services-process" className="scroll-mt-28 py-24 bg-gradient-to-b from-slate-100/70 to-white border-y border-slate-200/60">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-blue-600 font-bold uppercase tracking-[0.25em] text-[11px] block mb-2">
+            {/* 👇 Applied #2A8ACD */}
+            <span className="text-[#2A8ACD] font-bold uppercase tracking-[0.25em] text-[11px] block mb-2">
               {t("s_process_label", "Intake & Recovery Framework")}
             </span>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-slate-900 mb-4">
@@ -185,9 +184,11 @@ export default function ServicesPage() {
                 initial="initial"
                 whileInView="whileInView"
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm relative hover:border-blue-300 hover:shadow-md transition-all"
+                // 👇 Applied #2A8ACD hover border
+                className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm relative hover:border-[#2A8ACD] hover:shadow-md transition-all"
               >
-                <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200 text-blue-600 font-bold flex items-center justify-center text-lg mb-6">
+                {/* 👇 Applied #2A8ACD */}
+                <div className="w-12 h-12 rounded-2xl bg-sky-50 border border-sky-200 text-[#2A8ACD] font-bold flex items-center justify-center text-lg mb-6">
                   0{step.id}
                 </div>
                 <h3 className="font-bold text-lg text-slate-900 mb-3">

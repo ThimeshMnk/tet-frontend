@@ -64,11 +64,12 @@ export default function AboutPage() {
         className="scroll-mt-28 relative max-w-7xl mx-auto px-6 pt-20 pb-24 md:pt-32 flex flex-col items-center text-center"
       >
         <motion.div initial="initial" whileInView="whileInView" variants={fadeInUp} viewport={{ once: true }}>
-          <span className="text-sky-800 font-bold tracking-[0.3em] text-[11px] uppercase mb-6 px-4 py-1.5 bg-sky-100/80 rounded-full border border-sky-200 inline-flex items-center gap-2">
+          <span className="text-[#2A8ACD] font-bold tracking-[0.3em] text-[11px] uppercase mb-6 px-4 py-1.5 bg-sky-100/80 rounded-full border border-sky-200 inline-flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
             {t("about_hero_label", "OUR HISTORY • OUR MISSION")}
           </span>
-          <h1 className="font-serif text-5xl md:text-7xl font-bold text-sky-950 mb-6 tracking-tight">
+          {/* 👇 Applied #2A8ACD */}
+          <h1 className="font-serif text-5xl md:text-7xl font-bold text-[#2A8ACD] mb-6 tracking-tight">
             {t("about_hero_title", "Advocating for Dignity.")}
           </h1>
           <p className="max-w-2xl mx-auto text-slate-600 leading-relaxed text-sm md:text-base">
@@ -79,7 +80,7 @@ export default function AboutPage() {
           </p>
         </motion.div>
 
-        <div className="relative w-full max-w-4xl h-[320px] md:h-[520px] mt-16 rounded-t-[3rem] md:rounded-t-full overflow-hidden shadow-2xl border-4 border-white border-b-8 border-b-sky-500">
+        <div className="relative w-full max-w-4xl h-[320px] md:h-[520px] mt-16 rounded-t-[3rem] md:rounded-t-full overflow-hidden shadow-2xl border-4 border-white border-b-8 border-b-[#2A8ACD]">
           <Image
             src={getAssetUrl("about_hero_image", "https://images.unsplash.com/photo-1573164713988-8665fc963095")}
             fill
@@ -108,7 +109,8 @@ export default function AboutPage() {
           <div className="w-14 h-14 rounded-2xl bg-sky-100 flex items-center justify-center text-3xl mb-6 border border-sky-200">
             👁️
           </div>
-          <h2 className="font-serif text-3xl font-bold text-sky-950 mb-4">
+          {/* 👇 Applied #2A8ACD */}
+          <h2 className="font-serif text-3xl font-bold text-[#2A8ACD] mb-4">
             {t("about_vision_title", "Our Vision")}
           </h2>
           <p className="text-slate-600 text-sm leading-relaxed">
@@ -129,7 +131,8 @@ export default function AboutPage() {
           <div className="w-14 h-14 rounded-2xl bg-pink-100 flex items-center justify-center text-3xl mb-6 border border-pink-200">
             🎯
           </div>
-          <h2 className="font-serif text-3xl font-bold text-sky-950 mb-4">
+          {/* 👇 Applied #2A8ACD */}
+          <h2 className="font-serif text-3xl font-bold text-[#2A8ACD] mb-4">
             {t("about_mission_title", "Our Mission")}
           </h2>
           <p className="text-slate-600 text-sm leading-relaxed">
@@ -150,7 +153,8 @@ export default function AboutPage() {
           <span className="text-pink-600 font-bold uppercase text-[10px] tracking-[0.25em] block mb-2">
             Guiding Principles
           </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-sky-950 mb-16 italic">
+          {/* 👇 Applied #2A8ACD */}
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#2A8ACD] mb-16 italic">
             {t("about_values_main_title", "Our Core Values")}
           </h2>
 
@@ -164,8 +168,9 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 className="bg-white/80 p-8 rounded-3xl border border-sky-200/70 shadow-sm flex flex-col items-center hover:border-pink-300 hover:shadow-md transition-all"
               >
-                <div className="w-2 h-10 bg-gradient-to-b from-sky-400 to-pink-400 rounded-full mb-6"></div>
-                <h3 className="font-serif text-xl font-bold text-sky-950 mb-3">
+                <div className="w-2 h-10 bg-gradient-to-b from-[#2A8ACD] to-pink-400 rounded-full mb-6"></div>
+                {/* 👇 Applied #2A8ACD */}
+                <h3 className="font-serif text-xl font-bold text-[#2A8ACD] mb-3">
                   {t(`about_value_${val.id}_title`, val.title)}
                 </h3>
                 <p className="text-slate-600 text-xs leading-relaxed max-w-[220px]">
@@ -196,10 +201,11 @@ export default function AboutPage() {
           </div>
 
           <div className="w-full lg:w-3/5 p-10 md:p-16">
-            <span className="text-sky-800 font-bold tracking-[0.25em] text-[10px] uppercase mb-3 block">
+            <span className="text-[#2A8ACD] font-bold tracking-[0.25em] text-[10px] uppercase mb-3 block">
               {t("about_leader_label", "Leadership Spotlight")}
             </span>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-sky-950 mb-2">
+            {/* 👇 Applied #2A8ACD */}
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#2A8ACD] mb-2">
               {t("about_leader_name", "Kasuni Mayadunna")}
             </h2>
             <p className="text-pink-600 font-serif italic mb-6 font-semibold">
@@ -214,10 +220,11 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-2 gap-8 border-t border-sky-100 pt-6">
               <div>
-                <p className="text-3xl font-serif font-bold text-sky-950">
+                {/* 👇 Applied #2A8ACD */}
+                <p className="text-3xl font-serif font-bold text-[#2A8ACD]">
                   {t("about_leader_stat1_val", "5,000+")}
                 </p>
-                <p className="text-[10px] font-bold text-sky-700 uppercase tracking-widest mt-1">
+                <p className="text-[10px] font-bold text-[#2A8ACD] uppercase tracking-widest mt-1">
                   {t("about_leader_stat1_label", "Lives Impacted")}
                 </p>
               </div>
@@ -225,7 +232,7 @@ export default function AboutPage() {
                 <p className="text-3xl font-serif font-bold text-pink-600">
                   {t("about_leader_stat2_val", "24/7")}
                 </p>
-                <p className="text-[10px] font-bold text-sky-700 uppercase tracking-widest mt-1">
+                <p className="text-[10px] font-bold text-[#2A8ACD] uppercase tracking-widest mt-1">
                   {t("about_leader_stat2_label", "Crisis Support")}
                 </p>
               </div>
@@ -250,7 +257,8 @@ export default function AboutPage() {
             <span className="text-pink-600 font-bold uppercase text-[10px] tracking-[0.25em] block mb-2">
               {t("about_team_label", "COMMUNITY LEADERSHIP • OUR ADVOCATES")}
             </span>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-sky-950 mb-4">
+            {/* 👇 Applied #2A8ACD */}
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#2A8ACD] mb-4">
               {t("about_team_title", "Our Team Members")}
             </h2>
             <p className="text-slate-600 text-sm md:text-base leading-relaxed">
@@ -285,7 +293,8 @@ export default function AboutPage() {
                 <span className="text-[10px] font-bold text-pink-600 uppercase tracking-widest block">
                   Trans Equality Trust
                 </span>
-                <span className="text-xs md:text-sm font-bold text-sky-950">
+                {/* 👇 Applied #2A8ACD */}
+                <span className="text-xs md:text-sm font-bold text-[#2A8ACD]">
                   Team &amp; Grassroots Community Organizers
                 </span>
               </div>

@@ -65,50 +65,41 @@ export default function HomeContent({ customTitle }: HomeContentProps) {
   }
 
   // Scroll to section + Scroll slider to specific slide
-  // Inside HomeContent.tsx:
+  useEffect(() => {
+    const handleScrollMessage = (event: MessageEvent) => {
+      if (event.data?.type === "TET_SCROLL_TO_SECTION") {
+        const { sectionId, slideIndex } = event.data;
 
-useEffect(() => {
-  const handleScrollMessage = (event: MessageEvent) => {
-    if (event.data?.type === "TET_SCROLL_TO_SECTION") {
-      const { sectionId, slideIndex } = event.data;
-      console.log("📥 [Next.js iframe] Received scroll command for:", sectionId);
+        if (sectionId) {
+          const targetElement = document.getElementById(sectionId);
 
-      if (sectionId) {
-        const targetElement = document.getElementById(sectionId);
+          if (targetElement) {
+            const rect = targetElement.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const targetY = rect.top + scrollTop - 80;
 
-        if (targetElement) {
-          // Calculate exact document position (immune to cross-origin iframe scroll throttling)
-          const rect = targetElement.getBoundingClientRect();
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          const targetY = rect.top + scrollTop - 80; // 80px navbar clearance
+            window.scrollTo({
+              top: targetY,
+              behavior: "smooth"
+            });
 
-          window.scrollTo({
-            top: targetY,
-            behavior: "smooth"
-          });
+            targetElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          }
+        }
 
-          // Secondary fallback for mobile / Safari
-          targetElement.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        } else {
-          console.warn("⚠️ [Next.js] Element not found on page with id:", sectionId);
+        if (emblaApi && slideIndex !== null && slideIndex !== undefined) {
+          emblaApi.scrollTo(slideIndex);
         }
       }
+    };
 
-      // If slide index is provided, scroll Embla carousel
-      if (emblaApi && slideIndex !== null && slideIndex !== undefined) {
-        emblaApi.scrollTo(slideIndex);
-      }
-    }
-  };
+    window.addEventListener("message", handleScrollMessage);
+    return () => window.removeEventListener("message", handleScrollMessage);
+  }, [emblaApi]);
 
-  window.addEventListener("message", handleScrollMessage);
-  return () => window.removeEventListener("message", handleScrollMessage);
-}, [emblaApi]);
-
-  // Helper to extract localized text from card item
   const getCardText = (value: Record<string, string> | string | undefined, fallback: string) => {
     if (!value) return fallback;
     if (typeof value === "object") {
@@ -129,11 +120,11 @@ useEffect(() => {
           variants={fadeInUp}
           className="w-full lg:w-1/2"
         >
-          <span className="text-[#8e7f71] font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block border-l-2 border-[#1a365d] pl-4">
+          <span className="text-[#8e7f71] font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block border-l-2 border-[#2A8ACD] pl-4">
             {t("hero_top_label", "TRANS EQUALITY TRUST • SRI LANKA")}
           </span>
 
-          <h1 className="font-serif text-5xl md:text-7xl font-bold text-[#1a365d] mb-6 leading-[1.1] tracking-tighter">
+          <h1 className="font-serif text-5xl md:text-7xl font-bold text-[#2374b0] mb-6 leading-[1.1] tracking-tighter">
             {customTitle || t("hero_title_1", "Protecting")} <br />
             <span className="italic font-normal text-pride-gradient">
               {t("hero_title_2", "Rights & Hope.")}
@@ -148,15 +139,16 @@ useEffect(() => {
           </p>
 
           <div className="flex flex-wrap gap-4">
+            {/* 👇 Applied #2A8ACD (tet-blue) */}
             <Link
               href={t("btn_support_url", "/donate")}
-              className="bg-[#1a365d] text-white px-8 py-3 rounded-full text-[10px] font-bold tracking-widest hover:shadow-xl transition-all uppercase"
+              className="bg-[#2A8ACD] hover:bg-[#2374b0] text-white px-8 py-3 rounded-full text-[10px] font-bold tracking-widest hover:shadow-xl transition-all uppercase"
             >
               {t("btn_support", "Support Us")}
             </Link>
             <Link
               href={t("btn_mission_url", "/about")}
-              className="border border-[#1a365d] text-[#1a365d] px-8 py-3 rounded-full text-[10px] font-bold tracking-widest hover:bg-[#f3f0ec] transition-all uppercase"
+              className="border border-[#2A8ACD] text-[#2A8ACD] px-8 py-3 rounded-full text-[10px] font-bold tracking-widest hover:bg-sky-50 transition-all uppercase"
             >
               {t("btn_mission", "Our Mission")}
             </Link>
@@ -225,7 +217,6 @@ useEffect(() => {
                 {t("impact_label", "Documenting Change • 08 Core Pillars")}
               </p>
             </div>
-           
           </div>
 
           <div className="relative">
@@ -253,8 +244,8 @@ useEffect(() => {
                           className="object-cover"
                           unoptimized={isPreview}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#1a365d]/90 via-transparent flex flex-col justify-end p-8">
-                          <span className="text-pink-300 text-[8px] font-bold uppercase tracking-[0.25em] mb-1">
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#2A8ACD]/90 via-transparent flex flex-col justify-end p-8">
+                          <span className="text-[#EFB9C5] text-[8px] font-bold uppercase tracking-[0.25em] mb-1">
                             {categoryText}
                           </span>
                           <h3 className="text-white font-serif text-xl font-bold leading-tight">
@@ -330,7 +321,7 @@ useEffect(() => {
                 className="absolute inset-0 flex items-center justify-center"
               >
                 <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
-                  <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-[#1a365d] border-b-[12px] border-b-transparent ml-2"></div>
+                  <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-[#2A8ACD] border-b-[12px] border-b-transparent ml-2"></div>
                 </div>
               </a>
             </div>
@@ -364,9 +355,10 @@ useEffect(() => {
                   {t("story_stat_label", "Addiction Rate")}
                 </span>
               </div>
+              {/* 👇 Applied #2A8ACD (tet-blue) */}
               <Link
                 href={t("explore_services_url", "/services")}
-                className="bg-[#1a365d] text-white px-8 py-3 rounded-full text-[10px] font-bold tracking-widest uppercase"
+                className="bg-[#2A8ACD] hover:bg-[#2374b0] text-white px-8 py-3 rounded-full text-[10px] font-bold tracking-widest uppercase shadow-md transition-all"
               >
                 {t("explore_services", "Explore Services")}
               </Link>

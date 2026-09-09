@@ -3,29 +3,35 @@
 :root {
   --background: #fdfefe;
   --foreground: #1e293b;
-  --font-scale: 1;
+ --font-scale: 1.08; 
 
-  /* Trans Equality Light Blue & Light Pink Gradient */
---pride-gradient: linear-gradient(
+  /* Custom TET Brand Colors */
+  --tet-pink: #EFBAC6;
+  --tet-blue: #2A8ACD;
+
+  /* Harmonized Pride & Brand Gradient using #2A8ACD and #EFBAC6 */
+  --pride-gradient: linear-gradient(
     90deg, 
-    #0284c7 0%,    /* Rich Sky Blue */
-    #38bdf8 25%,   /* Bright Light Blue */
-    #ec4899 50%,   /* Rich Pink (makes '&' clearly visible!) */
-    #f472b6 75%,   /* Soft Pink */
-    #0ea5e9 100%   /* Sky Blue */
+    #2A8ACD 0%,    /* Custom TET Blue */
+    #38bdf8 30%,   /* Bright Light Blue */
+    #EFBAC6 60%,   /* Custom TET Soft Pink */
+    #f472b6 85%,   /* Accent Pink */
+    #2A8ACD 100%   /* Custom TET Blue */
   );
 
-    --pride-text-gradient: linear-gradient(
+  --pride-text-gradient: linear-gradient(
     90deg,
-    #0284c7 0%,
+    #2A8ACD 0%,
     #db2777 50%,
-    #0ea5e9 100%
+    #1d4ed8 100%
   );
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-tet-pink: var(--tet-pink);
+  --color-tet-blue: var(--tet-blue);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -43,7 +49,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom Pride Accents */
+/* Custom Pride Accents & Brand Classes */
 .bg-pride {
   background: var(--pride-gradient);
 }
@@ -52,8 +58,9 @@ body {
   background: var(--pride-text-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: inline-block; /* Ensures gradient renders reliably across browsers */
+  display: inline-block;
 }
+
 .bg-pride-line {
   background: var(--pride-gradient);
 }
@@ -93,7 +100,7 @@ html {
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
 
-/* Light Blue / Pink Scrollbars */
+/* Custom Scrollbars matching #2A8ACD and #EFBAC6 */
 ::-webkit-scrollbar { 
   width: 6px; 
 }
@@ -101,13 +108,9 @@ html {
   background: #f0f9ff; 
 }
 ::-webkit-scrollbar-thumb { 
-  background: #f472b6; 
+  background: #EFBAC6; 
   border-radius: 10px; 
 }
 ::-webkit-scrollbar-thumb:hover { 
-  background: #38bdf8; 
-}
-
-html {
-  scroll-behavior: smooth;
-}
+  background: #2A8ACD; 
+} 
