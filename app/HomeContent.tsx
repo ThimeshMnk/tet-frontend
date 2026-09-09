@@ -225,12 +225,7 @@ useEffect(() => {
                 {t("impact_label", "Documenting Change • 08 Core Pillars")}
               </p>
             </div>
-            <Link
-              href={t("view_journal_url", "/news")}
-              className="text-[10px] font-bold text-[#4A235A] underline tracking-[0.2em] uppercase hover:text-[#d88998] transition-all"
-            >
-              {t("view_journal", "View All Journal")}
-            </Link>
+           
           </div>
 
           <div className="relative">

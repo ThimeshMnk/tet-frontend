@@ -11,7 +11,7 @@ import React, {
 
 const RAW_API_BASE =
   process.env.NEXT_PUBLIC_BACKEND_URL ||
-  "https://web-production-3c6bc.up.railway.app";
+  "http://localhost:8000"; // Default to localhost if not set
 const API_BASE = RAW_API_BASE.replace(/\/+$/, "");
 
 export type TrilingualTranslations = Record<string, string>;
@@ -50,10 +50,24 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   }, []);
 
   // 2. Global Livewire live-preview message listener
+// Listen for admin preview messages & settings reload
   useEffect(() => {
-    const handleMessage = (event: MessageEvent) => {
+    const handleMessage = async (event: MessageEvent) => {
       if (event.data?.type === "TET_LIVE_PREVIEW") {
         setPreviewData(event.data.state);
+      }
+
+      // Re-fetch saved settings from DB after publish
+      if (event.data?.type === "TET_RELOAD_SETTINGS") {
+        try {
+          const response = await fetch(`${API_BASE}/api/settings`);
+          if (response.ok) {
+            const json = await response.json();
+            setInitialData(json);
+          }
+        } catch (err) {
+          console.error("Settings reload error:", err);
+        }
       }
     };
 
@@ -106,7 +120,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
       if (typeof target === "object") {
         finalPath = target[locale] || target["en"] || Object.values(target)[0] || "";
       } else {
-        finalPath = String(target).trim();
+         finalPath = String(target).trim().replace(/^["']|["']$/g, "").replace(/\\/g, "/");
       }
 
       if (!finalPath) return fallback;

@@ -1,17 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    dangerouslyAllowLocalIP: true, // 👈 Allows Next.js to optimize images from local backend (localhost:8000)
+    dangerouslyAllowLocalIP: true, // Allows Next.js to fetch from localhost:8000
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'web-production-3c6bc.up.railway.app',
-        pathname: '/storage/**',
-      },
       {
         protocol: 'http',
         hostname: 'localhost',
         port: '8000',
+        pathname: '/storage/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'web-production-3c6bc.up.railway.app',
         pathname: '/storage/**',
       },
       {
