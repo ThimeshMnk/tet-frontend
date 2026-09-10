@@ -5,7 +5,7 @@ import { LanguageProvider } from "./context/LanguageContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
-import ScrollToTop from "./components/ScrollToTop"; // 👈 1. Import component
+import ScrollToTop from "./components/ScrollToTop"; 
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         suppressHydrationWarning
       >
         <LanguageProvider>
-          <ScrollToTop /> {/* 👈 2. Place it here */}
+          <ScrollToTop /> 
           <Navbar />
           <main className="min-h-screen">{children}</main>
           <Footer />

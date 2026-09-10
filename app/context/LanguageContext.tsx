@@ -11,7 +11,7 @@ import React, {
 
 const RAW_API_BASE =
   process.env.NEXT_PUBLIC_BACKEND_URL ||
-  "http://localhost:8000"; // Default to localhost if not set
+  "http://localhost:8000"; 
 const API_BASE = RAW_API_BASE.replace(/\/+$/, "");
 
 export type TrilingualTranslations = Record<string, string>;
@@ -25,7 +25,7 @@ interface LanguageContextType {
   isPreview: boolean;
   t: (key: string, fallback?: string) => string;
   getAsset: (keyOrPath: SettingValue | null | undefined, fallback?: string) => string;
-  getAssetUrl: (keyOrPath: SettingValue | null | undefined, fallback?: string) => string; // 👈 Add this
+  getAssetUrl: (keyOrPath: SettingValue | null | undefined, fallback?: string) => string; 
 }
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
@@ -34,7 +34,6 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   const [initialData, setInitialData] = useState<SettingsMap>({});
   const [previewData, setPreviewData] = useState<SettingsMap | null>(null);
 
-  // 1. Fetch initial settings on initial client mount
   useEffect(() => {
     const fetchSettings = async () => {
       try {
@@ -49,15 +48,12 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     fetchSettings();
   }, []);
 
-  // 2. Global Livewire live-preview message listener
-// Listen for admin preview messages & settings reload
   useEffect(() => {
     const handleMessage = async (event: MessageEvent) => {
       if (event.data?.type === "TET_LIVE_PREVIEW") {
         setPreviewData(event.data.state);
       }
 
-      // Re-fetch saved settings from DB after publish
       if (event.data?.type === "TET_RELOAD_SETTINGS") {
         try {
           const response = await fetch(`${API_BASE}/api/settings`);
@@ -75,12 +71,10 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     return () => window.removeEventListener("message", handleMessage);
   }, []);
 
-  // Priority merge: preview state overrides saved state
   const mergedData = useMemo<SettingsMap>(() => {
     return { ...initialData, ...(previewData || {}) };
   }, [initialData, previewData]);
 
-  // 3. Centralized translation reader
   const t = useCallback(
     (key: string, fallback: string = ""): string => {
       const val = mergedData[key];
@@ -95,25 +89,22 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     [mergedData, locale]
   );
 
-  // 4. Centralized asset resolver for setting keys, full URLs, blobs, or storage paths
-  // Unified Asset Resolver
+
   const getAsset = useCallback(
     (keyOrPath: SettingValue | null | undefined, fallback: string = ""): string => {
       if (!keyOrPath) return fallback;
 
       let target: SettingValue | undefined = keyOrPath;
 
-      // Check if keyOrPath is a key in settings
       if (typeof keyOrPath === "string") {
         if (keyOrPath in mergedData) {
           target = mergedData[keyOrPath];
         } else if (!keyOrPath.includes("/") && !keyOrPath.includes(".")) {
-          // It's a key name (e.g. 'hero_image_main') that doesn't exist yet in the DB -> return fallback!
+          
           return fallback;
         }
       }
 
-      // If target is empty, null, or undefined -> return fallback
       if (!target) return fallback;
 
       let finalPath = "";
@@ -125,7 +116,6 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
 
       if (!finalPath) return fallback;
 
-      // Handle full URLs, Livewire preview temporary URLs, and blob paths
       if (
         finalPath.startsWith("http://") ||
         finalPath.startsWith("https://") ||
@@ -145,7 +135,6 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     [mergedData, locale]
   );
 
- // 2. In the Provider return value, alias getAssetUrl to getAsset:
   return (
     <LanguageContext.Provider
       value={{
@@ -155,7 +144,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
         isPreview: Boolean(previewData),
         t,
         getAsset,
-        getAssetUrl: getAsset, // 👈 Add this line (points to the same resolver)
+        getAssetUrl: getAsset, 
       }}
     >
       {children}

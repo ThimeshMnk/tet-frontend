@@ -184,13 +184,11 @@ export default function BookingPage() {
       {/* 1. HERO SECTION */}
       <section id="se-hero" className="scroll-mt-28 relative max-w-7xl mx-auto px-6 pt-16 pb-20 md:pt-28 text-center">
         <motion.div initial="initial" whileInView="whileInView" viewport={{ once: true }} variants={fadeInUp}>
-          {/* 👇 Applied #2A8ACD */}
           <span className="text-[#2A8ACD] font-bold tracking-[0.3em] text-[11px] uppercase mb-4 px-4 py-1.5 bg-sky-50 rounded-full border border-[var(--tet-pink)]/40 inline-flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
             {t("se_hero_badge", "TET SOCIAL ENTERPRISES • SELF-SUSTAINING BUSINESSES")}
           </span>
 
-          {/* 👇 Applied #2A8ACD */}
           <h1 className="font-serif text-5xl md:text-7xl font-bold text-[#2A8ACD] mb-6 tracking-tight leading-tight">
             {t("se_hero_title1", "Purpose-Driven")}{" "}
             <span className="text-pride-gradient italic font-normal font-playfair">
@@ -219,7 +217,6 @@ export default function BookingPage() {
         </motion.div>
       </section>
 
-      {/* 2. BUSINESS 1: HALL & VENUE BOOKING */}
       <section id="hall-booking" className="scroll-mt-28 py-20 max-w-7xl mx-auto px-6">
         <div className="bg-white rounded-3xl md:rounded-[3.5rem] p-8 md:p-16 border border-sky-200/80 shadow-md flex flex-col lg:flex-row items-center gap-12">
           
@@ -234,19 +231,16 @@ export default function BookingPage() {
               sizes="(max-width: 768px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-sky-950/40 via-transparent to-transparent"></div>
-            {/* 👇 Applied #2A8ACD */}
             <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl text-xs font-bold text-[#2A8ACD] border border-sky-200">
               {t("se_hall_capacity", "📍 Capacity: 50 – 200 Guests")}
             </div>
           </div>
 
           <div className="w-full lg:w-1/2 flex flex-col items-start text-left">
-            {/* 👇 Applied #2A8ACD */}
             <span className="text-[#2A8ACD] font-bold tracking-[0.25em] text-[10px] uppercase mb-2 px-3 py-1 bg-sky-50 rounded-full border border-sky-200">
               {t("se_hall_tag", "VENUE HIRE • SOCIAL ENTERPRISE")}
             </span>
 
-            {/* 👇 Applied #2A8ACD */}
             <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#2A8ACD] mb-4 leading-tight">
               {t("se_hall_title1", "TET Event Halls &")} <br />
               <span className="text-pride-gradient italic font-normal">
@@ -263,28 +257,23 @@ export default function BookingPage() {
 
             <div className="grid grid-cols-2 gap-4 w-full mb-8 text-xs">
               <div className="p-3.5 rounded-2xl bg-sky-50/60 border border-sky-100">
-                {/* 👇 Applied #2A8ACD */}
                 <span className="font-bold text-[#2A8ACD] block">🔊 Audio / Visual Equipment</span>
                 <span className="text-slate-500 text-[11px]">HD Projectors &amp; PA Sound Setup</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-sky-50/60 border border-sky-100">
-                {/* 👇 Applied #2A8ACD */}
                 <span className="font-bold text-[#2A8ACD] block">☕ Kitchen &amp; Catering Access</span>
                 <span className="text-slate-500 text-[11px]">Tea, coffee &amp; dining service prep</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-sky-50/60 border border-sky-100">
-                {/* 👇 Applied #2A8ACD */}
                 <span className="font-bold text-[#2A8ACD] block">♿ Accessible &amp; Safe Space</span>
                 <span className="text-slate-500 text-[11px]">Zero-discrimination guarantee</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-sky-50/60 border border-sky-100">
-                {/* 👇 Applied #2A8ACD */}
                 <span className="font-bold text-[#2A8ACD] block">🏷️ Competitive Rates</span>
                 <span className="text-slate-500 text-[11px]">Hourly, half-day &amp; full-day packages</span>
               </div>
             </div>
 
-            {/* 👇 Applied #2A8ACD */}
             <button
               type="button"
               onClick={openHallModal}
@@ -303,7 +292,6 @@ export default function BookingPage() {
             <span className="text-pink-600 font-bold uppercase text-[10px] tracking-[0.25em] block mb-2">
               {t("se_care_tag", "COMPASSIONATE COMMUNITY SERVICES")}
             </span>
-            {/* 👇 Applied #2A8ACD */}
             <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#2A8ACD] mb-4">
               {t("se_care_title1", "TET Daily")}{" "}
               <span className="text-pride-gradient italic font-normal">
@@ -348,11 +336,11 @@ export default function BookingPage() {
                   <span className="text-[10px] font-bold uppercase tracking-wider text-pink-600 bg-pink-50 px-3 py-1 rounded-full border border-pink-200 inline-block mb-3">
                     {srv.tag}
                   </span>
-                  {/* 👇 Applied #2A8ACD */}
+                  
                   <h3 className="font-serif text-xl font-bold text-[#2A8ACD] mb-3">{srv.title}</h3>
                   <p className="text-slate-600 text-xs leading-relaxed">{srv.desc}</p>
                 </div>
-                {/* 👇 Applied #2A8ACD */}
+       
                 <div className="pt-6 mt-4 border-t border-sky-50 text-[11px] font-bold text-[#2A8ACD]">
                   Daily &amp; Monthly Packages Available
                 </div>
@@ -369,7 +357,7 @@ export default function BookingPage() {
             <span className="text-pink-600 font-bold uppercase text-[10px] tracking-[0.25em] block mb-2">
               {t("se_prod_tag", "SEXUAL HEALTH & WELLNESS ENTERPRISE")}
             </span>
-            {/* 👇 Applied #2A8ACD */}
+          
             <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#2A8ACD] mb-4">
               {t("se_prod_title1", "Affordable Protection.")} <br />
               <span className="text-pride-gradient italic font-normal font-playfair">
@@ -400,19 +388,17 @@ export default function BookingPage() {
                       </span>
                     )}
                   </div>
-                  {/* 👇 Applied #2A8ACD */}
+                  
                   <h3 className="font-serif text-lg font-bold text-[#2A8ACD] mb-2">
                     {resolveText(prod.title)}
                   </h3>
                   <p className="text-slate-600 text-xs leading-relaxed mb-4">
                     {resolveText(prod.description)}
                   </p>
-                  {/* 👇 Applied #2A8ACD */}
                   <div className="text-[11px] font-semibold text-[#2A8ACD] mb-1">{prod.specs}</div>
                 </div>
 
                 <div className="pt-4 border-t border-sky-200/60 flex items-center justify-between">
-                  {/* 👇 Applied #2A8ACD */}
                   <span className="text-sm font-black text-[#2A8ACD]">
                     {prod.currency} {Number(prod.price).toLocaleString()}
                   </span>
@@ -488,7 +474,7 @@ export default function BookingPage() {
                     <span className="text-[10px] font-black uppercase text-pink-600 tracking-widest block">
                       {activeInquiry.type === "product_order" ? "Product Order Request" : "Venue Reservation Inquiry"}
                     </span>
-                    {/* 👇 Applied #2A8ACD */}
+                  
                     <h3 className="font-serif text-xl font-bold text-[#2A8ACD] mt-0.5">
                       {activeInquiry.itemName}
                     </h3>
@@ -497,7 +483,6 @@ export default function BookingPage() {
                   {activeInquiry.type === "product_order" && activeInquiry.unitPrice && (
                     <div className="p-3 bg-sky-50 rounded-xl flex items-center justify-between text-xs">
                       <span className="text-slate-500">Unit Price:</span>
-                      {/* 👇 Applied #2A8ACD */}
                       <strong className="text-[#2A8ACD]">LKR {activeInquiry.unitPrice.toLocaleString()}</strong>
                     </div>
                   )}
@@ -565,7 +550,7 @@ export default function BookingPage() {
                     ></textarea>
                   </div>
 
-                  {/* 👇 Applied #2A8ACD */}
+              
                   <button
                     type="submit"
                     disabled={isSubmitting}
