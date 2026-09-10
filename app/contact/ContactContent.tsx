@@ -149,13 +149,11 @@ export default function ContactPage() {
             whileInView="whileInView"
             variants={fadeInUp}
             transition={{ delay: item.id * 0.1 }}
-            // 👇 Applied #2A8ACD hover border
             className="bg-white p-10 rounded-[2.5rem] border border-[#f3f0ec] hover:shadow-lg hover:border-[#2A8ACD] transition-all group"
           >
             <p className="text-[#8e7f71] text-[9px] font-bold uppercase tracking-[0.3em] mb-6">
               {t(`ct_g${item.id}_label`, item.label)}
             </p>
-            {/* 👇 Applied #2A8ACD */}
             <h4 className="font-serif text-xl text-[#2A8ACD] mb-2">
               {t(`ct_g${item.id}_val`, item.val)}
             </h4>
@@ -170,7 +168,6 @@ export default function ContactPage() {
       <section id="contact-form" className="scroll-mt-28 max-w-7xl mx-auto px-6 pb-24">
         <div className="bg-white rounded-[4rem] overflow-hidden shadow-2xl border border-[#f3f0ec] flex flex-col lg:flex-row">
           <div className="w-full lg:w-3/5 p-12 md:p-20">
-            {/* 👇 Applied #2A8ACD */}
             <h3 className="font-serif text-3xl md:text-4xl text-[#2A8ACD] mb-10 tracking-tight">
               {t("ct_form_title", "Send a Message.")}
             </h3>
@@ -180,13 +177,10 @@ export default function ContactPage() {
                 <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl mx-auto">
                   ✓
                 </div>
-                {/* 👇 Applied #2A8ACD */}
                 <h4 className="font-serif text-2xl font-bold text-[#2A8ACD]">Inquiry Dispatched</h4>
                 <p className="text-slate-600 text-xs leading-relaxed max-w-sm mx-auto">
-                  {/* 👇 Applied #2A8ACD */}
                   Thank you. Your message reference is <strong className="font-mono text-[#2A8ACD]">{receiptRef}</strong>. Our desk officers will respond as soon as possible.
                 </p>
-                {/* 👇 Applied #2A8ACD */}
                 <button
                   type="button"
                   onClick={() => setReceiptRef(null)}
@@ -253,7 +247,6 @@ export default function ContactPage() {
                   ></textarea>
                 </div>
 
-                {/* 👇 Applied #2A8ACD */}
                 <button 
                   type="submit" 
                   disabled={isSubmitting}

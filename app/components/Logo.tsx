@@ -10,7 +10,6 @@ export default function Logo({ className = "h-12" }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg" 
       className={className}
     >
-      {/* Abstract Symbol: The Infinite Bloom */}
       <path 
         d="M40 25C40 15 50 10 60 20C70 30 50 45 40 55C30 45 10 30 20 20C30 10 40 15 40 25Z" 
         stroke="#D88998" 

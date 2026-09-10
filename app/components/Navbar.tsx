@@ -117,7 +117,6 @@ export default function Navbar() {
 
           {/* RIGHT ACTIONS: DONATE + TRILINGUAL SWITCHER */}
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-            {/* 3-Language Changer Pills */}
             <div className="flex items-center bg-white border border-[#EFB9C5]/60 rounded-full p-1 shadow-sm">
               {languages.map((lang) => (
                 <button
